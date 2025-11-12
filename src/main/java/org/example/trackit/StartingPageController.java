@@ -25,15 +25,17 @@ public class StartingPageController {
     }
 
     @FXML
-    protected void onLoginButtonClick(ActionEvent event) {
+    protected void handleLoginSignup(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("login-page.fxml"));
             Parent root = loader.load();
-            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Login Page");
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root, 1200, 800));
+            stage.setMaximized(true); // <--- THIS IS NEEDED
+            stage.setTitle("Login / Signup - Track-It");
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+
+}
 }

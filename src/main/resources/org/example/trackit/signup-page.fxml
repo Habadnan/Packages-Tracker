@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -13,16 +16,13 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.trackit.LoginPageController">
+<BorderPane xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.trackit.SingupPageController">
 
     <!-- HEADER (same as hello-view) -->
     <top>
         <HBox alignment="CENTER_LEFT" spacing="30" style="-fx-background-color: #493CD6;">
             <Label style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: white; -fx-padding: 10 30 10 40;" text="Track-It" />
-
             <Pane HBox.hgrow="ALWAYS" />
-            <!-- Empty pane for spacing -->
-
             <Button style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold;" text="Tracking" />
             <Button style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold;" text="Support" />
             <Button style="-fx-background-color: #ffffff33; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 5 20; -fx-border-radius: 20;" text="Login / Signup" />
@@ -32,15 +32,29 @@
 
     <!-- MAIN CENTER FORM -->
     <center>
-        <VBox alignment="CENTER" spacing="18">
-            <Label style="-fx-font-size: 28px; -fx-font-weight: normal;" text="Enter your user ID and password to log in" />
-            <TextField fx:id="loginUserIdField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="User ID" style="-fx-font-size: 15px; -fx-pref-width: 320px;" />
-            <PasswordField fx:id="loginPasswordField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Password" style="-fx-font-size: 15px; -fx-pref-width: 320px;" />
-            <Button style="-fx-background-color: #E84E31; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold; -fx-pref-width: 220px;" text="Login" />
-            <Button
-                    text="Create a User ID"
-                    style="-fx-background-color: transparent; -fx-border-color: #E84E31; -fx-border-width: 2; -fx-text-fill: #E84E31; -fx-font-size: 15px; -fx-font-weight: bold; -fx-pref-width: 220px;"
-                    onAction="#handleCreateUserId"/>
+        <VBox alignment="CENTER" spacing="16">
+            <Label style="-fx-font-size: 22px; -fx-font-weight: bold;" text="Create Your Account" />
+            <TextField fx:id="signupEmailField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Email" style="-fx-pref-width: 340px;" />
+            <PasswordField fx:id="signupPasswordField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Password" style="-fx-pref-width: 340px;" />
+            <TextField fx:id="signupUsernameField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Username" style="-fx-pref-width: 340px;" />
+            <TextField fx:id="signupAddressField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Address" style="-fx-pref-width: 340px;" />
+            <TextField fx:id="signupTownField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Town" style="-fx-pref-width: 340px;" />
+            <ComboBox fx:id="signupStateComboBox" promptText="State" style="-fx-pref-width: 340px;">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Alabama" />
+                        <String fx:value="Alaska" />
+                        <String fx:value="Arizona" />
+                        <String fx:value="Arkansas" />
+                        <String fx:value="California" />
+                        <String fx:value="Colorado" />
+                        <!-- Add more states as needed -->
+                    </FXCollections>
+                </items>
+            </ComboBox>
+            <TextField fx:id="signupZipField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Zip Code" style="-fx-pref-width: 340px;" />
+            <TextField fx:id="signupPhoneField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Phone Number" style="-fx-pref-width: 340px;" />
+            <Button style="-fx-background-color: #E84E31; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-pref-width: 220px;" text="Create User" />
         </VBox>
     </center>
 
