@@ -6,6 +6,13 @@ module org.example.trackit {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
 
+    requires firebase.admin;
+    requires com.google.auth;
+    requires com.google.auth.oauth2;
+    requires google.cloud.firestore;
+    requires google.cloud.core;
+    requires com.google.api.apicommon;
+
     opens org.example.trackit to javafx.fxml;
     exports org.example.trackit;
 }
