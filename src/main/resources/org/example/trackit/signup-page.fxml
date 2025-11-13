@@ -25,8 +25,7 @@
             <Pane HBox.hgrow="ALWAYS" />
             <Button style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold;" text="Tracking" />
             <Button style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold;" text="Support" />
-            <Button style="-fx-background-color: #ffffff33; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 5 20; -fx-border-radius: 20;"
-                    text="Login / Signup" onAction="#goToLoginPage"/>
+            <Button onAction="#goToLoginPage" style="-fx-background-color: #ffffff33; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 5 20; -fx-border-radius: 20;" text="Login / Signup" />
             <Region minWidth="30" />
         </HBox>
     </top>
@@ -35,11 +34,11 @@
     <center>
         <VBox alignment="CENTER" spacing="16">
             <Label style="-fx-font-size: 22px; -fx-font-weight: bold;" text="Create Your Account" />
-            <TextField fx:id="signupEmailField" promptText="Email" style="-fx-pref-width: 340px;" />
-            <PasswordField fx:id="signupPasswordField" promptText="Password" style="-fx-pref-width: 340px;" />
-            <TextField fx:id="signupUsernameField" promptText="Username" style="-fx-pref-width: 340px;" />
-            <TextField fx:id="signupAddressField" promptText="Address" style="-fx-pref-width: 340px;" />
-            <TextField fx:id="signupTownField" promptText="Town" style="-fx-pref-width: 340px;" />
+            <TextField fx:id="signupEmailField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Email" style="-fx-pref-width: 340px;" />
+            <PasswordField fx:id="signupPasswordField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Password" style="-fx-pref-width: 340px;" />
+            <TextField fx:id="signupUsernameField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Username" style="-fx-pref-width: 340px;" />
+            <TextField fx:id="signupAddressField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Address" style="-fx-pref-width: 340px;" />
+            <TextField fx:id="signupTownField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Town" style="-fx-pref-width: 340px;" />
             <ComboBox fx:id="signupStateComboBox" promptText="State" style="-fx-pref-width: 340px;">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
@@ -52,14 +51,11 @@
                     </FXCollections>
                 </items>
             </ComboBox>
-            <TextField fx:id="signupZipField" promptText="Zip Code" style="-fx-pref-width: 340px;" />
-            <TextField fx:id="signupPhoneField" promptText="Phone Number" style="-fx-pref-width: 340px;" />
+            <TextField fx:id="signupZipField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Zip Code" style="-fx-pref-width: 340px;" />
+            <TextField fx:id="signupPhoneField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Phone Number" style="-fx-pref-width: 340px;" />
 
             <!-- CREATE USER BUTTON -->
-            <Button fx:id="createUserButton"
-                    text="Create User"
-                    onAction="#onCreateUserClicked"
-                    style="-fx-background-color: #E84E31; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-pref-width: 220px;" />
+            <Button fx:id="createUserButton" onAction="#onCreateUserClicked" style="-fx-background-color: #E84E31; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-pref-width: 220px;" text="Create User" />
         </VBox>
     </center>
 
