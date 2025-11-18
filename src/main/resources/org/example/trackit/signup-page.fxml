@@ -2,79 +2,22 @@
 
 <?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.trackit.SingupPageController">
-
-    <!-- HEADER (same as hello-view) -->
-    <top>
-        <HBox alignment="CENTER_LEFT" spacing="30" style="-fx-background-color: #493CD6;">
-            <Label style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: white; -fx-padding: 10 30 10 40;" text="Track-It" />
-            <Pane HBox.hgrow="ALWAYS" />
-            <Button style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold;" text="Tracking" />
-            <Button style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold;" text="Support" />
-            <Button style="-fx-background-color: #ffffff33; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 5 20; -fx-border-radius: 20;" text="Login / Signup" />
-            <Region minWidth="30" />
-        </HBox>
-    </top>
-
-    <!-- MAIN CENTER FORM -->
-    <center>
-        <VBox alignment="CENTER" spacing="16">
-            <Label style="-fx-font-size: 22px; -fx-font-weight: bold;" text="Create Your Account" />
-            <TextField fx:id="signupEmailField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Email" style="-fx-pref-width: 340px;" />
-            <PasswordField fx:id="signupPasswordField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Password" style="-fx-pref-width: 340px;" />
-            <TextField fx:id="signupUsernameField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Username" style="-fx-pref-width: 340px;" />
-            <TextField fx:id="signupAddressField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Address" style="-fx-pref-width: 340px;" />
-            <TextField fx:id="signupTownField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Town" style="-fx-pref-width: 340px;" />
-            <ComboBox fx:id="signupStateComboBox" promptText="State" style="-fx-pref-width: 340px;">
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                        <String fx:value="Alabama" />
-                        <String fx:value="Alaska" />
-                        <String fx:value="Arizona" />
-                        <String fx:value="Arkansas" />
-                        <String fx:value="California" />
-                        <String fx:value="Colorado" />
-                        <!-- Add more states as needed -->
-                    </FXCollections>
-                </items>
-            </ComboBox>
-            <TextField fx:id="signupZipField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Zip Code" style="-fx-pref-width: 340px;" />
-            <TextField fx:id="signupPhoneField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Phone Number" style="-fx-pref-width: 340px;" />
-            <Button style="-fx-background-color: #E84E31; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-pref-width: 220px;" text="Create User" />
-        </VBox>
-    </center>
-
-    <!-- FOOTER (same as hello-view) -->
-    <bottom>
-        <VBox alignment="BOTTOM_LEFT" spacing="0" style="-fx-background-color: #493CD6;">
-            <Separator />
-            <HBox alignment="TOP_LEFT" spacing="60" style="-fx-padding: 30 20 13 40;">
-                <VBox spacing="10">
-                    <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: white;" text="OUR COMPANY" />
-                    <Hyperlink style="-fx-text-fill: white;" text="About Track-It" />
-                    <Hyperlink style="-fx-text-fill: white;" text="Our Portfolio" />
-                    <Hyperlink style="-fx-text-fill: white;" text="Contact Us" />
-                </VBox>
-                <!-- Spacer for potential additional columns in the future -->
-            </HBox>
-        </VBox>
-    </bottom>
-
-    <padding>
-        <Insets bottom="0" left="0" right="0" top="0" />
-    </padding>
-</BorderPane>
+<VBox alignment="CENTER" spacing="16" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.trackit.SingupPageController">
+    <Label style="-fx-font-size: 22px; -fx-font-weight: bold;" text="Create Your Account" />
+    <TextField fx:id="signupEmailField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Email" style="-fx-pref-width: 340px;" />
+    <PasswordField fx:id="signupPasswordField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Password" style="-fx-pref-width: 340px;" />
+    <TextField fx:id="signupUsernameField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Username" style="-fx-pref-width: 340px;" />
+    <TextField fx:id="signupAddressField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Address" style="-fx-pref-width: 340px;" />
+    <TextField fx:id="signupTownField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Town" style="-fx-pref-width: 340px;" />
+    <ComboBox fx:id="signupStateComboBox" maxHeight="-Infinity" maxWidth="-Infinity" promptText="State" style="-fx-pref-width: 340px;"/>
+    <TextField fx:id="signupZipField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Zip Code" style="-fx-pref-width: 340px;" />
+    <TextField fx:id="signupPhoneField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Phone Number" style="-fx-pref-width: 340px;" />
+    <Button fx:id="createUserButton" onAction="#handleCreateUserSignup" style="-fx-background-color: #E84E31; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-pref-width: 220px;" text="Create User" />
+</VBox>
