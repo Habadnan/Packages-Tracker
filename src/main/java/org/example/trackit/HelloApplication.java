@@ -14,14 +14,22 @@ public class HelloApplication extends Application {
         FXMLLoader masterLoader = new FXMLLoader(getClass().getResource("master-page.fxml"));
         Parent masterRoot = masterLoader.load();
         MasterPageController masterController = masterLoader.getController();
-        masterRoot.setUserData(masterController); // Ensure accessibility
+        masterRoot.setUserData(masterController);
 
         FXMLLoader contentLoader = new FXMLLoader(getClass().getResource("main-page.fxml"));
         Parent content = contentLoader.load();
         masterController.setContent(content);
 
-        stage.setScene(new Scene(masterRoot, 1200, 800));
+        Scene scene = new Scene(masterRoot, 1200, 800);
+
+        // Attach the CSS stylesheet here
+        scene.getStylesheets().add(
+                getClass().getResource("styles.css").toExternalForm()
+        );
+
+        stage.setScene(scene);
         stage.setMaximized(true);
         stage.show();
     }
+
 }

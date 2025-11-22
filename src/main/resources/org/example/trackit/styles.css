@@ -1,0 +1,66 @@
+.track-main-page-textfield {
+    -fx-font-size: 20px;
+    -fx-font-weight: 500;
+    -fx-font-style: italic;
+    -fx-pref-height: 50px;
+    -fx-pref-width: 390px;
+    -fx-background-radius: 8 0 0 8;
+    -fx-border-radius: 8 8 8 8;
+    -fx-background-color: #f3f3f6;
+}
+
+.track-textfield {
+    -fx-font-size: 20px;
+    -fx-font-weight: 500;
+    -fx-pref-height: 50px;
+    -fx-pref-width: 390px;
+    -fx-background-radius: 8 8 8 8;
+    -fx-border-radius: 50 50 50 50;
+    -fx-background-color: #f3f3f6;
+}
+
+.track-main-page-button {
+    -fx-font-size: 19px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 0 8 8 0;
+    -fx-border-radius: 0 8 8 0;
+    -fx-pref-height: 50px;
+    -fx-pref-width: 100px;
+    -fx-background-color: linear-gradient(to right, #FF6A00, #F7971E);
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, #D9480F66, 7, 0.5, 0, 4);
+}
+
+
+.track-button {
+    -fx-font-size: 19px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8 8 8 8;
+    -fx-border-radius: 50 50 50 50;
+    -fx-pref-height: 50px;
+    -fx-pref-width: 100px;
+    -fx-background-color: linear-gradient(to right, #FF6A00, #F7971E);
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, #D9480F66, 7, 0.5, 0, 4);
+}
+
+
+.track-button-border {
+    -fx-font-size: 19px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8 8 8 8;
+    -fx-border-radius: 50 50 50 50;
+    -fx-background-color: transparent;
+    -fx-border-color: linear-gradient(to right, #FF6A00, #F7971E);
+    -fx-border-width: 2;
+    -fx-text-fill: linear-gradient(to right, #FF6A00, #F7971E);
+
+}
+
+
+
+Button:hover {
+    -fx-background-color: linear-gradient(to right, #fd5e53, #FF9900);
+    -fx-scale-x: 1.04;
+    -fx-scale-y: 1.04;
+}

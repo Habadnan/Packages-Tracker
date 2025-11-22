@@ -17,27 +17,27 @@ import java.util.List;
 
 public class SingupPageController {
     @FXML
-    public TextField signupEmailField;
+    private TextField signupEmailField;
     @FXML
-    public PasswordField signupPasswordField;
+    private PasswordField signupPasswordField;
     @FXML
-    public TextField signupUsernameField;
+    private TextField signupUsernameField;
     @FXML
-    public TextField signupAddressField;
+    private TextField signupAddressField;
     @FXML
-    public TextField signupTownField;
+    private TextField signupTownField;
     @FXML
-    public ComboBox signupStateComboBox;
+    private ComboBox signupStateComboBox;
     @FXML
-    public TextField signupZipField;
+    private TextField signupZipField;
     @FXML
-    public TextField signupPhoneField;
+    private TextField signupPhoneField;
     @FXML
-    public Button createUserButton;
+    private Button createUserButton;
 
 
     @FXML
-    public void initialize() {
+    private void initialize() {
         // List of US states (example)
         List<String> states = Arrays.asList(
                 "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut",

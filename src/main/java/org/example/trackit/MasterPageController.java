@@ -5,45 +5,101 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class MasterPageController {
 
 
+//Header buttons ----------------------------------------------------------------
     @FXML
-    public Button trackingButtonHeader;
-    public MenuButton trackingMenuButton;
-    public MenuItem ongoingTrackingMenuItem;
-    public MenuItem pastTrackingMenuItem;
+    private Button homePageButton;
+    @FXML
+    private Button supportButton;
+    @FXML
+    private Button loginSignupButton;
+
+//Header drop down menu
+    @FXML
+    private MenuButton trackingMenuButton;
+    @FXML
+    private MenuItem ongoingTrackingMenuItem;
+    @FXML
+    private MenuItem pastTrackingMenuItem;
+// ----------------------------------------------------------------
+
+
+//Footer ----------------------------------------------------------------
+    @FXML
+    private Hyperlink aboutUs;
+    @FXML
+    private Hyperlink portfolio;
+    @FXML
+    private Hyperlink termsOfService;
+
+// ----------------------------------------------------------------
 
     @FXML private StackPane contentPane;
     public void setContent(Node content) {
         contentPane.getChildren().setAll(content);
     }
 
+
+
+//Header handler ----------------------------------------------------------------
     @FXML
-    private void handleLoginSignup(ActionEvent event) {
-        loadAndSetContent("login-page.fxml");
+    private void handleHeaderNav(ActionEvent event) {
+        Object source = event.getSource();
+        String fxmlFile = null;
+
+        if (source == homePageButton) {
+            fxmlFile = "main-page.fxml";
+        }
+        else if (source == supportButton) {
+            fxmlFile = "support-page.fxml";
+        }
+        else if (source == loginSignupButton) {
+            fxmlFile = "login-page.fxml";
+        }
+        else if (source == ongoingTrackingMenuItem) {
+            fxmlFile = "ongoing-tracking-page.fxml";
+        }
+        else if (source == pastTrackingMenuItem) {
+            fxmlFile = "past-tracking-page.fxml";
+        }
+
+        if (fxmlFile != null) {
+            loadAndSetContent(fxmlFile);
+        }
     }
+//----------------------------------------------------------------
+
 
     @FXML
-    private void handleOngoingTracking(ActionEvent event) {
-        loadAndSetContent("ongoing-tracking-page.fxml");
+    private void handleFooter(ActionEvent event) {
+        Object source = event.getSource();
+        String fxmlFile = null;
+
+        if (source == aboutUs) {
+            loadAndSetContent("about-us-page.fxml");
+        }
+        else if (source == portfolio) {
+            loadAndSetContent("portfolio-page.fxml");
+        }
+        else if (source == termsOfService) {
+            loadAndSetContent("terms-of-service-page.fxml");
+        }
+
+        if (fxmlFile != null) {
+            loadAndSetContent(fxmlFile);
+        }
+
     }
-
-    @FXML
-    private void handlePastTracking(ActionEvent event) {
-        loadAndSetContent("past-tracking-page.fxml");
-    }
-
-
 
 
 
@@ -62,7 +118,6 @@ public class MasterPageController {
     }
 
 //Create display name for signed-in user
-    @FXML private Button loginSignupButton;
 
     private boolean loggedIn = false;
     private String userDisplayName = "Login / Signup";
@@ -81,4 +136,6 @@ public class MasterPageController {
             loginSignupButton.setText("Login / Signup");
         }
     }
+
+
 }

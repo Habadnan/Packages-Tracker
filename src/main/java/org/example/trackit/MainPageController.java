@@ -8,12 +8,12 @@ import javafx.scene.control.TextField;
 public class MainPageController {
 
     @FXML
-    public Button trackButton;
+    private Button trackButton;
     @FXML
-    public TextField trackingID;
+    private TextField trackingID;
 
     @FXML
-    public void initialize() {
+    private void initialize() {
         trackButton.setDisable(true);
 
         ChangeListener<String> listener = (obs, oldText, newText) -> {

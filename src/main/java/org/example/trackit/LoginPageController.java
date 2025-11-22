@@ -16,9 +16,9 @@ import java.io.IOException;
 
 public class LoginPageController {
     @FXML
-    public TextField loginUserIdField;
+    private TextField loginUserIdField;
     @FXML
-    public Button loginButton;
+    private Button loginButton;
     @FXML
     private TextField loginUsernameField;
     @FXML
@@ -26,7 +26,7 @@ public class LoginPageController {
 
 
     @FXML
-    public void initialize() {
+    private void initialize() {
         loginButton.setDisable(true);
 
         ChangeListener<String> listener = (obs, oldText, newText) -> {
@@ -64,6 +64,4 @@ public class LoginPageController {
             masterController.loadAndSetContent("signup-page.fxml");
         }
     }
-
-
 }

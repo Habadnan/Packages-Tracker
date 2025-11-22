@@ -9,15 +9,33 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" spacing="16" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.trackit.SingupPageController">
+<VBox alignment="CENTER" spacing="16" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.trackit.SingupPageController" style="-fx-background-color: white">
     <Label style="-fx-font-size: 22px; -fx-font-weight: bold;" text="Create Your Account" />
-    <TextField fx:id="signupEmailField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Email" style="-fx-pref-width: 340px;" />
-    <PasswordField fx:id="signupPasswordField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Password" style="-fx-pref-width: 340px;" />
-    <TextField fx:id="signupUsernameField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Username" style="-fx-pref-width: 340px;" />
-    <TextField fx:id="signupAddressField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Address" style="-fx-pref-width: 340px;" />
-    <TextField fx:id="signupTownField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Town" style="-fx-pref-width: 340px;" />
-    <ComboBox fx:id="signupStateComboBox" maxHeight="-Infinity" maxWidth="-Infinity" promptText="State" style="-fx-pref-width: 340px;"/>
-    <TextField fx:id="signupZipField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Zip Code" style="-fx-pref-width: 340px;" />
-    <TextField fx:id="signupPhoneField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Phone Number" style="-fx-pref-width: 340px;" />
-    <Button fx:id="createUserButton" onAction="#handleCreateUserSignup" style="-fx-background-color: #E84E31; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-pref-width: 220px;" text="Create User" />
+    <TextField fx:id="signupEmailField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Email" style="-fx-pref-width: 340px;"
+               styleClass="track-textfield"
+    />
+    <PasswordField fx:id="signupPasswordField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Password" style="-fx-pref-width: 340px;"
+                   styleClass="track-textfield"
+    />
+    <TextField fx:id="signupUsernameField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Username" style="-fx-pref-width: 340px;"
+               styleClass="track-textfield"
+    />
+    <TextField fx:id="signupAddressField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Address" style="-fx-pref-width: 340px;"
+               styleClass="track-textfield"
+    />
+    <TextField fx:id="signupTownField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Town" style="-fx-pref-width: 340px;"
+               styleClass="track-textfield"
+    />
+    <ComboBox fx:id="signupStateComboBox" maxHeight="-Infinity" maxWidth="-Infinity" promptText="State" style="-fx-pref-width: 340px;"
+
+    />
+    <TextField fx:id="signupZipField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Zip Code" style="-fx-pref-width: 340px;"
+               styleClass="track-textfield"
+    />
+    <TextField fx:id="signupPhoneField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Phone Number" style="-fx-pref-width: 340px;"
+               styleClass="track-textfield"
+    />
+    <Button fx:id="createUserButton" onAction="#handleCreateUserSignup" style=" -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-pref-width: 220px;" text="Create User"
+            styleClass="track-button"
+    />
 </VBox>
