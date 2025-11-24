@@ -87,6 +87,55 @@
 
 
 
+/* Section headers (for "Package Details", "Delivery Timeline", etc.) */
+.detail-section-header {
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #493CD6;
+    -fx-padding: 0 0 6 0;
+}
+
+/* Sub-labels */
+.detail-sub-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+}
+
+.detail-value-label {
+    -fx-font-size: 13.5px;
+    -fx-font-weight: normal;
+    -fx-text-fill: #444;
+}
+
+.detail-status-pill-onway {
+    -fx-background-color: #e9f1ff;
+    -fx-text-fill: #FF6A00;
+    -fx-font-size: 13px;
+    -fx-padding: 2 13 2 13;
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, #FF6A0066, 3, 0.2, 0, 0);
+}
+
+/* Map card placeholder */
+.map-placeholder {
+    -fx-background-color: #f8f8f8;
+    -fx-border-color: #ececec;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-width: 2;
+}
+
+/* Timeline ProgressBar Styling (makes the bar pop with your brand) */
+.progress-bar:determinate .bar {
+    -fx-background-color: linear-gradient(to right, #FF6A00 75%, #F7971E 95%);
+    -fx-background-radius: 8 8 8 8;
+}
+
+
+
 Button:hover {
     -fx-background-color: linear-gradient(to right, #fd5e53, #FF9900);
     -fx-scale-x: 1.04;

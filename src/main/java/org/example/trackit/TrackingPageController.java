@@ -1,9 +1,13 @@
 package org.example.trackit;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
+import javafx.stage.Stage;
 
 import java.util.List;
 
@@ -91,12 +95,29 @@ public class TrackingPageController {
         return cardButton;
     }
 
-    // Replace with real navigation logic:
     private void showTrackingDetail(TrackingInfo info) {
-        System.out.println("Open detail for: " + info.trackingNumber);
-        // You could call your master page's content swapper here,
-        // passing the TrackingInfo as needed.
+        try {
+            // Load the detail page FXML and controller
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("detail-tracking-page.fxml"));
+            Parent detailRoot = loader.load();
+
+            // Set the data for the detail page
+            DetailTrackingPageController controller = loader.getController();
+            controller.setTrackingInfo(info);
+
+            // Find the current MasterPageController via UserData (like in your LoginPageController)
+            Stage stage = (Stage) trackingListGrid.getScene().getWindow();
+            Parent masterRoot = stage.getScene().getRoot();
+            if (masterRoot != null) {
+                MasterPageController masterController = (MasterPageController) masterRoot.getUserData();
+                masterController.setContent(detailRoot);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
+
 
     public static class TrackingInfo {
         public final String trackingNumber, orderDate, items, location, estimatedDate, status;

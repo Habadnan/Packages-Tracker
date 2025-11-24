@@ -44,7 +44,7 @@ public class MasterPageController {
 
 // ----------------------------------------------------------------
 
-    @FXML private StackPane contentPane;
+    @FXML public StackPane contentPane;
     public void setContent(Node content) {
         contentPane.getChildren().setAll(content);
     }
