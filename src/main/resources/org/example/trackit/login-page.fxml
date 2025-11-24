@@ -1,66 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.trackit.LoginPageController">
-
-    <!-- HEADER (same as hello-view) -->
-    <top>
-        <HBox alignment="CENTER_LEFT" spacing="30" style="-fx-background-color: #493CD6;">
-            <Label style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: white; -fx-padding: 10 30 10 40;" text="Track-It" />
-
-            <Pane HBox.hgrow="ALWAYS" />
-            <!-- Empty pane for spacing -->
-
-            <Button style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold;" text="Tracking" />
-            <Button style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold;" text="Support" />
-            <Button style="-fx-background-color: #ffffff33; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 5 20; -fx-border-radius: 20;" text="Login / Signup" />
-            <Region minWidth="30" />
-        </HBox>
-    </top>
-
-    <!-- MAIN CENTER FORM -->
-    <center>
-        <VBox alignment="CENTER" spacing="18">
-            <Label style="-fx-font-size: 28px; -fx-font-weight: normal;" text="Enter your user ID and password to log in" />
-            <TextField fx:id="loginUserIdField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="User ID" style="-fx-font-size: 15px; -fx-pref-width: 320px;" />
-            <PasswordField fx:id="loginPasswordField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Password" style="-fx-font-size: 15px; -fx-pref-width: 320px;" />
-            <Button style="-fx-background-color: #E84E31; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold; -fx-pref-width: 220px;" text="Login" />
-            <Button
-                    text="Create a User ID"
-                    style="-fx-background-color: transparent; -fx-border-color: #E84E31; -fx-border-width: 2; -fx-text-fill: #E84E31; -fx-font-size: 15px; -fx-font-weight: bold; -fx-pref-width: 220px;"
-                    onAction="#handleCreateUserId"/>
-        </VBox>
-    </center>
-
-    <!-- FOOTER (same as hello-view) -->
-    <bottom>
-        <VBox alignment="BOTTOM_LEFT" spacing="0" style="-fx-background-color: #493CD6;">
-            <Separator />
-            <HBox alignment="TOP_LEFT" spacing="60" style="-fx-padding: 30 20 13 40;">
-                <VBox spacing="10">
-                    <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: white;" text="OUR COMPANY" />
-                    <Hyperlink style="-fx-text-fill: white;" text="About Track-It" />
-                    <Hyperlink style="-fx-text-fill: white;" text="Our Portfolio" />
-                    <Hyperlink style="-fx-text-fill: white;" text="Contact Us" />
-                </VBox>
-                <!-- Spacer for potential additional columns in the future -->
-            </HBox>
-        </VBox>
-    </bottom>
-
-    <padding>
-        <Insets bottom="0" left="0" right="0" top="0" />
-    </padding>
-</BorderPane>
+<VBox alignment="CENTER" spacing="18" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.trackit.LoginPageController" style="-fx-background-color: white">
+    <Label style="-fx-font-size: 28px; -fx-font-weight: normal;" text="Enter your user ID and password to log in" />
+    <TextField fx:id="loginUserIdField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="User ID" style="-fx-font-size: 15px; -fx-pref-width: 320px;"
+               styleClass="track-textfield"
+    />
+    <PasswordField fx:id="loginPasswordField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Password" style="-fx-font-size: 15px; -fx-pref-width: 320px;"
+                   styleClass="track-textfield"
+    />
+    <Button fx:id="loginButton" onAction="#handleLogin" style=" -fx-font-size: 15px; -fx-font-weight: bold; -fx-pref-width: 220px;" text="Login"
+            styleClass="track-button"
+    />
+    <Button onAction="#handleCreateUserLogin" style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-pref-width: 220px;" text="Create a User ID"
+            styleClass="track-button-border"
+    />
+</VBox>

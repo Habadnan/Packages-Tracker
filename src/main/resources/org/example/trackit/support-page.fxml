@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.trackit.SupportPageController">
+    <VBox alignment="CENTER" maxWidth="420" spacing="24">
+        <Label style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: #493CD6;" text="Support" />
+
+        <Label style="-fx-font-size: 16px; -fx-text-fill: #444;" text="Contact us and we’ll get back to you within 24 hours!" />
+
+        <TextField fx:id="supportNameField" promptText="Your Name" styleClass="track-textfield" />
+
+        <TextField fx:id="supportEmailField" promptText="Your Email" styleClass="track-textfield" />
+
+        <TextArea fx:id="supportMessageField" prefRowCount="4" promptText="Your Message" styleClass="track-textfield" wrapText="true" />
+
+        <HBox alignment="CENTER" spacing="16">
+            <Button fx:id="sendSupportButton" onAction="#handleSupportButton" styleClass="track-button" text="Send" />
+            <Button fx:id="backToHomeButton" onAction="#handleBackToHomeButton" styleClass="track-button-border" text="Back to Home" />
+        </HBox>
+    </VBox>
+</StackPane>
