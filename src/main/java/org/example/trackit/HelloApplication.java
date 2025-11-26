@@ -19,6 +19,10 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        //start firebase up
+        fstore = contextFirebase.firebase();
+        fauth = FirebaseAuth.getInstance();
+
         FXMLLoader masterLoader = new FXMLLoader(getClass().getResource("master-page.fxml"));
         Parent masterRoot = masterLoader.load();
         MasterPageController masterController = masterLoader.getController();

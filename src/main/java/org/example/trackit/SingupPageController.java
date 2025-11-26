@@ -1,19 +1,27 @@
 package org.example.trackit;
 
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.QueryDocumentSnapshot;
+import com.google.cloud.firestore.QuerySnapshot;
+import com.google.cloud.firestore.WriteResult;
+import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.UserRecord;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.ExecutionException;
 
 public class SingupPageController {
     @FXML
@@ -72,16 +80,83 @@ public class SingupPageController {
     }
 
 
-
     @FXML
     public void handleCreateUserSignup(ActionEvent event) {
-        // Get reference to stage and master controller
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Parent masterRoot = stage.getScene().getRoot();
-        if (masterRoot != null) {
-            MasterPageController masterController = (MasterPageController) masterRoot.getUserData();
-            masterController.setUserLoggedIn("Place holder name");
-            masterController.loadAndSetContent("main-page.fxml");
+        if(isRepeatUsername(signupUsernameField.getText())) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Warning");
+            alert.setHeaderText("Invalid name");
+            alert.setContentText("Username is already taken");
+            alert.showAndWait();
         }
+        else{
+            register();
+            // Get reference to stage and master controller
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            Parent masterRoot = stage.getScene().getRoot();
+            if (masterRoot != null) {
+                MasterPageController masterController = (MasterPageController) masterRoot.getUserData();
+                masterController.setUserLoggedIn(signupUsernameField.getText());
+                masterController.loadAndSetContent("main-page.fxml");
+            }
+        }
+    }
+
+    private boolean register(){
+        UserRecord.CreateRequest request = new UserRecord.CreateRequest()
+                .setEmail(signupEmailField.getText())
+                .setEmailVerified(false)
+                .setPassword(signupPasswordField.getText())
+                .setDisplayName(signupUsernameField.getText())
+                .setDisabled(false);
+
+        UserRecord userRecord;
+        try {
+            userRecord = HelloApplication.fauth.createUser(request);
+            System.out.println("Created new user with Firebase ID: " + userRecord.getUid());
+
+            DocumentReference docRef = HelloApplication.fstore.collection("users").document(UUID.randomUUID().toString());
+            Map<String, String> data = addUserData(userRecord);
+
+            ApiFuture<WriteResult> result = docRef.set(data);
+            return true;
+
+        } catch (FirebaseAuthException ex) {
+            System.out.println("There was an error creating a new user in the database");
+            return false;
+        }
+    }
+
+    private Map<String, String> addUserData(UserRecord userRecord) {
+        Map<String, String> data = new HashMap<>();
+        data.put("Email", signupEmailField.getText());
+        data.put("Password", signupPasswordField.getText());
+        data.put("ID", userRecord.getUid());
+        data.put("Username", signupUsernameField.getText());
+        data.put("Address", signupAddressField.getText());
+        data.put("Town", signupTownField.getText());
+        data.put("State", signupStateComboBox.getSelectionModel().getSelectedItem().toString());
+        data.put("ZipCode", signupZipField.getText());
+        data.put("PhoneNumber", signupPhoneField.getText());
+        return data;
+    }
+
+    private boolean isRepeatUsername(String username) {
+        ApiFuture<QuerySnapshot> future = HelloApplication.fstore.collection("users").get();
+        List<QueryDocumentSnapshot> documents;
+        try {
+            documents = future.get().getDocuments();
+            if (!documents.isEmpty()) {
+                for (QueryDocumentSnapshot document : documents) {
+                    if (document.getData().get("Username").equals(username)) {
+                        System.out.println("Username already exists in the database");
+                        return true;
+                    }
+                }
+            }
+        } catch (InterruptedException | ExecutionException ex) {
+            ex.printStackTrace();
+        }
+        return false;
     }
 }
