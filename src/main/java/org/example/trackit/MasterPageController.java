@@ -58,7 +58,7 @@ public class MasterPageController {
         String fxmlFile = null;
 
         if (source == homePageButton) {
-            fxmlFile = "main-page.fxml";
+            fxmlFile = "guest-main-page.fxml";
         }
         else if (source == supportButton) {
             fxmlFile = "support-page.fxml";
@@ -100,11 +100,6 @@ public class MasterPageController {
         }
 
     }
-
-
-
-
-
 
     //Public method to load and set content from the master page
     public void loadAndSetContent(String fxmlPath) {

@@ -81,7 +81,7 @@ public class SingupPageController {
         if (masterRoot != null) {
             MasterPageController masterController = (MasterPageController) masterRoot.getUserData();
             masterController.setUserLoggedIn("Place holder name");
-            masterController.loadAndSetContent("main-page.fxml");
+            masterController.loadAndSetContent("guest-main-page.fxml");
         }
     }
 }
