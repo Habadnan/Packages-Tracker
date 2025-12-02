@@ -53,7 +53,7 @@ public class LoginPageController {
             if (masterRoot != null) {
                 MasterPageController masterController = (MasterPageController) masterRoot.getUserData();
                 masterController.setUserLoggedIn(userRecord.getDisplayName());
-                masterController.loadAndSetContent("main-page.fxml");
+                masterController.loadAndSetContent("user-main-page.fxml");
             }
         }
     }

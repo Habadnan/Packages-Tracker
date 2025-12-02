@@ -97,7 +97,7 @@ public class SingupPageController {
             if (masterRoot != null) {
                 MasterPageController masterController = (MasterPageController) masterRoot.getUserData();
                 masterController.setUserLoggedIn(signupUsernameField.getText());
-                masterController.loadAndSetContent("main-page.fxml");
+                masterController.loadAndSetContent("user-main-page.fxml");
             }
         }
     }
