@@ -23,7 +23,13 @@ public class TrackingPageController {
                 new TrackingInfo("987654321", "11/15/2025", "Shoes", "Sorting Facility", "11/18/2025", "Delayed"),
                 new TrackingInfo("555111222", "11/16/2025", "Book, Charger, Cable, Adapter, Power Bank, Mouse, Keyboard", "Out for delivery", "11/20/2025", "Out for delivery"),
                 new TrackingInfo("444333222", "11/16/2025", "Tablet, Pen", "Local Office", "11/20/2025", "In transit"),
+                new TrackingInfo("111000999", "11/17/2025", "Monitor, Stand", "Delivery Truck", "11/22/2025", "Delivered"),
+                new TrackingInfo("111000999", "11/17/2025", "Monitor, Stand", "Delivery Truck", "11/22/2025", "Delivered"),
+                new TrackingInfo("111000999", "11/17/2025", "Monitor, Stand", "Delivery Truck", "11/22/2025", "Delivered"),
+                new TrackingInfo("111000999", "11/17/2025", "Monitor, Stand", "Delivery Truck", "11/22/2025", "Delivered"),
+                new TrackingInfo("111000999", "11/17/2025", "Monitor, Stand", "Delivery Truck", "11/22/2025", "Delivered"),
                 new TrackingInfo("111000999", "11/17/2025", "Monitor, Stand", "Delivery Truck", "11/22/2025", "Delivered")
+
         );
         int colNum = 3;
         trackingListGrid.getChildren().clear();

@@ -9,40 +9,35 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class SupportPageController {
-    @FXML
-    private TextField supportNameField;
-    @FXML
-    private TextField supportEmailField;
-    @FXML
-    private Button sendSupportButton;
+public class GuestMainPageController {
 
+
+    @FXML
+    private Button trackButtonDirect;
+    @FXML
+    private TextField trackingID;
 
     @FXML
     private void initialize() {
-        sendSupportButton.setDisable(true);
+        trackButtonDirect.setDisable(true);
 
         ChangeListener<String> listener = (obs, oldText, newText) -> {
-            boolean allFilled = !supportNameField.getText().isEmpty() && !supportEmailField.getText().isEmpty();
-            sendSupportButton.setDisable(!allFilled);
+            boolean allFilled = !trackingID.getText().isEmpty();
+            trackButtonDirect.setDisable(!allFilled);
         };
 
-        supportNameField.textProperty().addListener(listener);
-        supportEmailField.textProperty().addListener(listener);
+        trackingID.textProperty().addListener(listener);
     }
 
 
-    public void handleSupportButton(ActionEvent actionEvent) {
-    }
-
-    @FXML
-    public void handleBackToHomeButton(ActionEvent event) {
+    public void handleTrackButton(ActionEvent event) {
         // Get reference to stage and master controller
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Parent masterRoot = stage.getScene().getRoot();
         if (masterRoot != null) {
             MasterPageController masterController = (MasterPageController) masterRoot.getUserData();
-            masterController.loadAndSetContent("guest-main-page.fxml");
+            masterController.loadAndSetContent("detail-tracking-page.fxml");
         }
+
     }
 }

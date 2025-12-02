@@ -13,6 +13,8 @@ module org.example.trackit {
     requires google.cloud.firestore;
     requires google.cloud.core;
     requires com.google.api.apicommon;
+    requires javafx.base;
+    requires javafx.graphics;
 
     opens org.example.trackit to javafx.fxml;
     exports org.example.trackit;

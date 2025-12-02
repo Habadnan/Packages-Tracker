@@ -28,7 +28,7 @@ public class HelloApplication extends Application {
         MasterPageController masterController = masterLoader.getController();
         masterRoot.setUserData(masterController);
 
-        FXMLLoader contentLoader = new FXMLLoader(getClass().getResource("main-page.fxml"));
+        FXMLLoader contentLoader = new FXMLLoader(getClass().getResource("guest-main-page.fxml"));
         Parent content = contentLoader.load();
         masterController.setContent(content);
 
