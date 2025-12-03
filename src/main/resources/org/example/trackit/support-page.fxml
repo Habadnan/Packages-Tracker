@@ -9,16 +9,17 @@
 <?import javafx.scene.layout.VBox?>
 
 <StackPane style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.trackit.SupportPageController">
-    <VBox alignment="CENTER" maxWidth="420" spacing="24">
-        <Label style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: #493CD6;" text="Support" />
+    <VBox alignment="CENTER" maxWidth="-Infinity" spacing="24">
+        <Label text="Support"
+               styleClass="main-Title"/>
 
-        <Label style="-fx-font-size: 16px; -fx-text-fill: #444;" text="Contact us and we’ll get back to you within 24 hours!" />
+        <Label text="Contact us and we’ll probably, maybe, theoretically get back to you!" />
 
         <TextField fx:id="supportNameField" promptText="Your Name" styleClass="track-textfield" />
 
         <TextField fx:id="supportEmailField" promptText="Your Email" styleClass="track-textfield" />
 
-        <TextArea fx:id="supportMessageField" prefRowCount="4" promptText="Your Message" styleClass="track-textfield" wrapText="true" />
+        <TextArea fx:id="supportMessageField" minHeight="105" prefRowCount="4" promptText="Your Message" styleClass="track-textfield" wrapText="true" />
 
         <HBox alignment="CENTER" spacing="16">
             <Button fx:id="sendSupportButton" onAction="#handleSupportButton" styleClass="track-button" text="Send" />
