@@ -1,10 +1,12 @@
 package org.example.trackit;
 
+import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class UserMainPageController {
@@ -16,6 +18,20 @@ public class UserMainPageController {
     public Button trackButtonPast;
     @FXML
     public Button shipButton;
+    @FXML
+    public TextField trackingID;
+
+    @FXML
+    private void initialize() {
+        trackButtonDirect.setDisable(true);
+
+        ChangeListener<String> listener = (obs, oldText, newText) -> {
+            boolean allFilled = !trackingID.getText().isEmpty();
+            trackButtonDirect.setDisable(!allFilled);
+        };
+
+        trackingID.textProperty().addListener(listener);
+    }
 
 
     @FXML
