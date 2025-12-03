@@ -1,3 +1,16 @@
+.main-Title {
+    -fx-font-size: 60px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #493CD6;
+}
+
+
+.main-SubTitle {
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #493CD6;
+}
+
 .track-main-page-textfield {
     -fx-font-size: 20px;
     -fx-font-weight: 500;

@@ -1,85 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
-<StackPane xmlns="http://javafx.com/javafx/24.0.1"
-           xmlns:fx="http://javafx.com/fxml"
-           fx:controller="org.example.trackit.ShippingPageController"
-           style="-fx-background-color: white;">
+<StackPane style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.trackit.ShippingPageController">
 
     <!-- remove maxWidth, keep it centered -->
-    <VBox alignment="CENTER" spacing="24" prefWidth="1000">
-        <Label text="Create Shipment"
-               style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #493CD6;"/>
+    <VBox alignment="CENTER" prefWidth="1000" spacing="24">
+        <Label style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #493CD6;" text="Create Shipment" />
 
-        <GridPane hgap="18" vgap="14" maxWidth="1000">
+        <GridPane hgap="18" maxWidth="1000" vgap="14">
             <columnConstraints>
                 <!-- wider label column -->
-                <ColumnConstraints prefWidth="220" minWidth="190"  hgrow="SOMETIMES" halignment="RIGHT"/>
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="190" prefWidth="220" />
                 <!-- field column grows and will reach toward the black bars -->
-                <ColumnConstraints hgrow="ALWAYS"/>
+                <ColumnConstraints hgrow="ALWAYS" />
             </columnConstraints>
 
             <!-- Dimensions -->
-            <Label text="Dimensions (L x W x H):"
-                   styleClass="tracking-label-section"/>
+            <Label styleClass="tracking-label-section" text="Dimensions (L x W x H):" />
             <HBox spacing="8" GridPane.columnIndex="1">
-                <TextField fx:id="lengthField" promptText="Length" styleClass="track-textfield"/>
-                <TextField fx:id="widthField"  promptText="Width"  styleClass="track-textfield"/>
-                <TextField fx:id="heightField" promptText="Height" styleClass="track-textfield"/>
+                <TextField fx:id="lengthField" promptText="Length" styleClass="track-textfield" />
+                <TextField fx:id="widthField" promptText="Width" styleClass="track-textfield" />
+                <TextField fx:id="heightField" promptText="Height" styleClass="track-textfield" />
             </HBox>
 
             <!-- Products -->
-            <Label text="Products:" GridPane.rowIndex="1"
-                   styleClass="tracking-label-section"/>
-            <TextField fx:id="productsField" GridPane.rowIndex="1" GridPane.columnIndex="1"
-                       promptText="Comma separated items" styleClass="track-textfield"/>
+            <Label styleClass="tracking-label-section" text="Products:" GridPane.rowIndex="1" />
+            <TextField fx:id="productsField" promptText="Comma separated items" styleClass="track-textfield" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
             <!-- Weight -->
-            <Label text="Weight (kg):" GridPane.rowIndex="2"
-                   styleClass="tracking-label-section"/>
-            <TextField fx:id="weightField" GridPane.rowIndex="2" GridPane.columnIndex="1"
-                       promptText="e.g. 2.5" styleClass="track-textfield"/>
+            <Label styleClass="tracking-label-section" text="Weight (kg):" GridPane.rowIndex="2" />
+            <TextField fx:id="weightField" promptText="e.g. 2.5" styleClass="track-textfield" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-            <!-- Status -->
-            <Label text="Status:" GridPane.rowIndex="3"
-                   styleClass="tracking-label-section"/>
-            <ComboBox fx:id="statusCombo" GridPane.rowIndex="3" GridPane.columnIndex="1"
-                      promptText="Select status">
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                        <String fx:value="Preparing shipment"/>
-                        <String fx:value="Ready for pickup"/>
-                        <String fx:value="In transit"/>
-                        <String fx:value="Delivered"/>
-                    </FXCollections>
-                </items>
-            </ComboBox>
 
-            <!-- User Address -->
-            <Label text="User Address:" GridPane.rowIndex="4"
-                   styleClass="tracking-label-section"/>
-            <TextArea fx:id="userAddressArea" GridPane.rowIndex="4" GridPane.columnIndex="1"
-                      promptText="Street, City, State, ZIP" prefRowCount="3"
-                      styleClass="track-textfield"/>
 
             <!-- Shipping Location -->
-            <Label text="Shipping Location:" GridPane.rowIndex="5"
-                   styleClass="tracking-label-section"/>
-            <TextField fx:id="shippingLocationField" GridPane.rowIndex="5" GridPane.columnIndex="1"
-                       promptText="Origin warehouse / city" styleClass="track-textfield"/>
+            <Label styleClass="tracking-label-section" text="Shipping Location:" GridPane.rowIndex="5" />
+            <TextArea
+                    fx:id="shippingLocationField"
+                    minHeight="105"
+                    minWidth="-Infinity"
+                    promptText="Address"
+                    styleClass="track-textfield"
+                    GridPane.columnIndex="1"
+                    GridPane.rowIndex="5"
+            />
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
         </GridPane>
 
-        <Button text="Create Shipment"
-                fx:id="createShipmentButton"
-                onAction="#handleCreateShipment"
-                style="-fx-pref-width: 260px;"
-                styleClass="track-button"/>
+        <Button fx:id="createShipmentButton" onAction="#handleCreateShipment" style="-fx-pref-width: 260px;" styleClass="track-button" text="Create Shipment" />
 
-        <Label fx:id="resultLabel"
-               styleClass="tracking-label-section"/>
+        <Label fx:id="resultLabel" styleClass="tracking-label-section" />
     </VBox>
 </StackPane>
