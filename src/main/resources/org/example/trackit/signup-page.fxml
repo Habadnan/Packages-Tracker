@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox alignment="CENTER" spacing="16" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.trackit.SingupPageController" style="-fx-background-color: white">
-    <Label style="-fx-font-size: 22px; -fx-font-weight: bold;" text="Create Your Account" />
+    <Label styleClass="main-SubTitle" text="Create Your Account" />
     <TextField fx:id="signupEmailField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Email" style="-fx-pref-width: 340px;"
                styleClass="track-textfield"
     />
