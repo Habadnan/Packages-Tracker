@@ -23,7 +23,7 @@
 
         <!-- Tracking Bar Card -->
         <StackPane style="-fx-background-color: white; -fx-background-radius: 16; -fx-padding: 24 32; ">
-            <VBox alignment="CENTER" spacing="20">
+            <VBox alignment="CENTER" spacing="50">
                 <HBox alignment="CENTER" spacing="0">
                     <TextField fx:id="trackingID"
                                promptText="Enter your TRACKING ID"
@@ -34,6 +34,7 @@
                             text="TRACK"
                             styleClass="track-main-page-button"/>
                 </HBox>
+
 
                 <HBox alignment="CENTER" spacing="100">
                     <VBox alignment="TOP_LEFT" spacing="20">
@@ -70,7 +71,7 @@
 
         </StackPane>
 
-        <!-- Why Track With Us Section -->
+        <!-- Why Track With Us Section
         <VBox alignment="CENTER" spacing="10">
             <Label text="Why track with Track-It?"
                    style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #493CD6;" />
@@ -78,5 +79,6 @@
             <Label text="• Easy-to-follow delivery updates" style="-fx-font-size: 16px; -fx-text-fill: #333; -fx-font-weight: bold;" />
             <Label text="• Descriptive package details every step of the way" style="-fx-font-size: 16px; -fx-text-fill: #333; -fx-font-weight: bold;" />
         </VBox>
+        -->
     </VBox>
 </StackPane>
