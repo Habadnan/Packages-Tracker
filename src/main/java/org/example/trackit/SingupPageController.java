@@ -29,6 +29,10 @@ public class SingupPageController {
     @FXML
     private PasswordField signupPasswordField;
     @FXML
+    private TextField firstNameField;
+    @FXML
+    private TextField lastNameField;
+    @FXML
     private TextField signupUsernameField;
     @FXML
     private TextField signupAddressField;
@@ -63,6 +67,7 @@ public class SingupPageController {
 
         ChangeListener<String> listener = (obs, oldText, newText) -> {
             boolean allFilled = !signupEmailField.getText().isEmpty() && !signupPasswordField.getText().isEmpty()
+                    && !firstNameField.getText().isEmpty() && !lastNameField.getText().isEmpty()
                     && !signupUsernameField.getText().isEmpty() && !signupAddressField.getText().isEmpty()
                     && !signupTownField.getText().isEmpty() && !signupStateComboBox.getSelectionModel().isEmpty()
                     && !signupZipField.getText().isEmpty() && !signupPhoneField.getText().isEmpty();
@@ -132,6 +137,8 @@ public class SingupPageController {
         data.put("Email", signupEmailField.getText());
         data.put("Password", signupPasswordField.getText());
         data.put("ID", userRecord.getUid());
+        data.put("FirstName", firstNameField.getText());
+        data.put("LastName", lastNameField.getText());
         data.put("Username", signupUsernameField.getText());
         data.put("Address", signupAddressField.getText());
         data.put("Town", signupTownField.getText());

@@ -160,6 +160,50 @@
 }
 
 
+/* About Section Cards */
+.about-section-card {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #493CD644;
+    -fx-border-radius: 16;
+    -fx-background-radius: 16;
+    -fx-padding: 30 40 30 40;
+    -fx-effect: dropshadow(gaussian, #00000022, 8, 0.2, 0, 3);
+}
+
+.about-section-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #493CD6;
+}
+
+.about-section-text {
+    -fx-font-size: 18px;
+    -fx-text-fill: #444;
+}
+
+/* HOW IT WORKS CARDS */
+.how-card {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #F7971EAA;
+    -fx-border-radius: 14;
+    -fx-background-radius: 14;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(gaussian, #F7971E33, 4, 0.2, 0, 3);
+}
+
+.how-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #E86B12;
+}
+
+.how-desc {
+    -fx-font-size: 14px;
+    -fx-text-fill: #555;
+    -fx-alignment: center;
+}
+
+
 
 Button:hover {
     -fx-background-color: linear-gradient(to right, #fd5e53, #FF9900);

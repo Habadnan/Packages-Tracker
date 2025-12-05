@@ -17,6 +17,12 @@
     <PasswordField fx:id="signupPasswordField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Password" style="-fx-pref-width: 340px;"
                    styleClass="track-textfield"
     />
+    <TextField fx:id="firstNameField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="First Name" style="-fx-pref-width: 340px;"
+               styleClass="track-textfield"
+    />
+    <TextField fx:id="lastNameField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Last Name" style="-fx-pref-width: 340px;"
+               styleClass="track-textfield"
+    />
     <TextField fx:id="signupUsernameField" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Username" style="-fx-pref-width: 340px;"
                styleClass="track-textfield"
     />

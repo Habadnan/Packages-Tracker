@@ -39,12 +39,28 @@
     <bottom>
         <VBox alignment="BOTTOM_LEFT" spacing="0" style="-fx-background-color: #493CD6;">
             <Separator />
-            <HBox alignment="TOP_LEFT" spacing="60" style="-fx-padding: 10 0 8 10;">
-                    <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: white;" text="OUR COMPANY" />
-                    <Hyperlink fx:id="aboutUs" onAction="#handleFooter" style="-fx-text-fill: white;" text="About Track-It" />
-                    <Hyperlink fx:id="portfolio" onAction="#handleFooter" style=" -fx-text-fill: white;" text="Our Portfolio" />
-                    <Hyperlink fx:id="termsOfService" onAction="#handleFooter" style="-fx-text-fill: white;" text="Terms Of Service" />
+            <HBox alignment="TOP_LEFT" spacing="60" style="-fx-padding: 10 10 8 10;">
+                <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: white;"
+                       text="OUR COMPANY" />
+                <Hyperlink fx:id="aboutUs" onAction="#handleFooter" style="-fx-text-fill: white;"
+                           text="About Track-It" />
+                <Hyperlink fx:id="portfolio" onAction="#handleFooter" style="-fx-text-fill: white;"
+                           text="Our Portfolio" />
+                <Hyperlink fx:id="termsOfService" onAction="#handleFooter" style="-fx-text-fill: white;"
+                           text="Terms Of Service" />
+
+                <!-- Spacer that takes up all remaining space -->
+                <Region HBox.hgrow="ALWAYS" />
+
+                <!-- Right-aligned label -->
+                <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: white;"
+                       text="Track-IT © 2025 — All Rights Reserved"/>
             </HBox>
+            <!--
+            <HBox alignment="TOP_RIGHT" spacing="60"  style="-fx-padding: 10 0 8 10;">
+
+            </HBox>
+            -->
         </VBox>
     </bottom>
 </BorderPane>

@@ -13,15 +13,12 @@
 
 <StackPane style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.trackit.ShippingPageController">
 
-    <!-- remove maxWidth, keep it centered -->
     <VBox alignment="CENTER" prefWidth="1000" spacing="24">
         <Label style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #493CD6;" text="Create Shipment" />
 
         <GridPane hgap="18" maxWidth="1000" vgap="14">
             <columnConstraints>
-                <!-- wider label column -->
                 <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="190" prefWidth="220" />
-                <!-- field column grows and will reach toward the black bars -->
                 <ColumnConstraints hgrow="ALWAYS" />
             </columnConstraints>
 
@@ -29,40 +26,83 @@
             <Label styleClass="tracking-label-section" text="Dimensions (L x W x H):" />
             <HBox spacing="8" GridPane.columnIndex="1">
                 <TextField fx:id="lengthField" promptText="Length" styleClass="track-textfield" />
-                <TextField fx:id="widthField" promptText="Width" styleClass="track-textfield" />
+                <TextField fx:id="widthField"  promptText="Width"  styleClass="track-textfield" />
                 <TextField fx:id="heightField" promptText="Height" styleClass="track-textfield" />
             </HBox>
 
             <!-- Products -->
             <Label styleClass="tracking-label-section" text="Products:" GridPane.rowIndex="1" />
-            <TextField fx:id="productsField" promptText="Comma separated items" styleClass="track-textfield" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="productsField" promptText="Comma separated items"
+                       styleClass="track-textfield"
+                       GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
             <!-- Weight -->
             <Label styleClass="tracking-label-section" text="Weight (kg):" GridPane.rowIndex="2" />
-            <TextField fx:id="weightField" promptText="e.g. 2.5" styleClass="track-textfield" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="weightField" promptText="e.g. 2.5"
+                       styleClass="track-textfield"
+                       GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
+            <!-- Sender name -->
+            <Label styleClass="tracking-label-section" text="Sender Name:" GridPane.rowIndex="3" />
+            <HBox spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                <TextField fx:id="senderFirstNameField" promptText="First name" styleClass="track-textfield" />
+                <TextField fx:id="senderLastNameField"  promptText="Last name"  styleClass="track-textfield" />
+            </HBox>
 
+            <!-- Sender address -->
+            <Label styleClass="tracking-label-section" text="Sender Address:" GridPane.rowIndex="4" />
+            <TextArea fx:id="senderAddressField"
+                      minHeight="105"
+                      minWidth="-Infinity"
+                      promptText="Sender address"
+                      styleClass="track-textfield"
+                      GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
-            <!-- Shipping Location -->
-            <Label styleClass="tracking-label-section" text="Shipping Location:" GridPane.rowIndex="5" />
-            <TextArea
-                    fx:id="shippingLocationField"
-                    minHeight="105"
-                    minWidth="-Infinity"
-                    promptText="Address"
-                    styleClass="track-textfield"
-                    GridPane.columnIndex="1"
-                    GridPane.rowIndex="5"
-            />
-         <rowConstraints>
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-         </rowConstraints>
+            <!-- Sender zip -->
+            <Label styleClass="tracking-label-section" text="Sender Zip Code:" GridPane.rowIndex="5" />
+            <TextField fx:id="senderZipField"
+                       promptText="e.g. 12345"
+                       styleClass="track-textfield"
+                       GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+            <!-- Receiver name -->
+            <Label styleClass="tracking-label-section" text="Receiver Name:" GridPane.rowIndex="6" />
+            <HBox spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                <TextField fx:id="receiverFirstNameField" promptText="First name" styleClass="track-textfield" />
+                <TextField fx:id="receiverLastNameField"  promptText="Last name"  styleClass="track-textfield" />
+            </HBox>
+
+            <!-- Receiver zip -->
+            <Label styleClass="tracking-label-section" text="Receiver Zip Code:" GridPane.rowIndex="7" />
+            <TextField fx:id="receiverZipField"
+                       promptText="e.g. 98765"
+                       styleClass="track-textfield"
+                       GridPane.columnIndex="1" GridPane.rowIndex="7" />
+
+            <!-- Shipping Location (destination address) -->
+            <Label styleClass="tracking-label-section" text="Shipping Location:" GridPane.rowIndex="8" />
+            <TextArea fx:id="shippingLocationField"
+                      minHeight="105"
+                      minWidth="-Infinity"
+                      promptText="Destination address"
+                      styleClass="track-textfield"
+                      GridPane.columnIndex="1" GridPane.rowIndex="8" />
+
+            <rowConstraints>
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+            </rowConstraints>
         </GridPane>
+
+
+
 
         <Button fx:id="createShipmentButton" onAction="#handleCreateShipment" style="-fx-pref-width: 260px;" styleClass="track-button" text="Create Shipment" />
 
