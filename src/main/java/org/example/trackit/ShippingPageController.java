@@ -1,11 +1,15 @@
 package org.example.trackit;
 
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.QueryDocumentSnapshot;
+import com.google.cloud.firestore.QuerySnapshot;
+import com.google.cloud.firestore.WriteResult;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
+import java.util.concurrent.ExecutionException;
 
 public class ShippingPageController {
 
@@ -14,44 +18,39 @@ public class ShippingPageController {
     @FXML private TextField heightField;
     @FXML private TextField productsField;
     @FXML private TextField weightField;
-
     @FXML private TextField senderFirstNameField;
     @FXML private TextField senderLastNameField;
     @FXML private TextArea senderAddressField;
     @FXML private TextField senderZipField;
-
     @FXML private TextField receiverFirstNameField;
     @FXML private TextField receiverLastNameField;
     @FXML private TextArea shippingLocationField;
     @FXML private TextField receiverZipField;
-
-
     @FXML private Label resultLabel;
-
+    String trackingNumber;
     // Simple in‑memory store of created shipments
     private static final List<Shipment> SHIPMENTS = new ArrayList<>();
     private static final Random RANDOM = new Random();
 
     @FXML
     private void handleCreateShipment() {
-        String length  = lengthField.getText();
-        String width   = widthField.getText();
-        String height  = heightField.getText();
+        String length = lengthField.getText();
+        String width  = widthField.getText();
+        String height = heightField.getText();
+        String weight = weightField.getText();
         String products = productsField.getText();
-        String weight   = weightField.getText();
-
         String senderFirst  = senderFirstNameField.getText();
         String senderLast   = senderLastNameField.getText();
         String senderAddress = senderAddressField.getText();
         String senderZip = senderZipField.getText();
-
         String receiverFirst = receiverFirstNameField.getText();
         String receiverLast  = receiverLastNameField.getText();
         String shippingLocation = shippingLocationField.getText();
         String receiverZip = receiverZipField.getText();
 
-        // Basic validation – require all the new fields as well
-        if (products == null || products.isBlank()
+        if (length == null || length.isBlank() || width == null || width.isBlank()
+                || height == null || height.isBlank()
+                || products == null || products.isBlank()
                 || weight == null || weight.isBlank()
                 || senderFirst == null || senderFirst.isBlank()
                 || senderLast == null || senderLast.isBlank()
@@ -60,38 +59,35 @@ public class ShippingPageController {
                 || receiverFirst == null || receiverFirst.isBlank()
                 || receiverLast == null || receiverLast.isBlank()
                 || shippingLocation == null || shippingLocation.isBlank()
-                || receiverZip == null || receiverZip.isBlank()
-                ) {
+                || receiverZip == null || receiverZip.isBlank()) {
             resultLabel.setText("Please fill in all required fields.");
             return;
         }
-
-        String trackingNumber = generateTrackingNumber();
-        LocalDate createdDate = LocalDate.now();
-
-        Shipment shipment = new Shipment(
-                trackingNumber,
-                createdDate.toString(),
-                length, width, height,
-                products,
-                weight,
-                senderFirst, senderLast, senderAddress, senderZip,
-                receiverFirst, receiverLast, receiverZip,
-                shippingLocation
-        );
-        SHIPMENTS.add(shipment);
-
+        createPackage();
+//        String trackingNumber = generateTrackingNumber();
+//        LocalDate createdDate = LocalDate.now();
+//
+//        Shipment shipment = new Shipment(
+//                trackingNumber,
+//                createdDate.toString(),
+//                length, width, height,
+//                products,
+//                weight,
+//                status,
+//                userAddress,
+//                shippingLocation
+//        );
+//        SHIPMENTS.add(shipment);
         resultLabel.setText("Shipment created. Tracking #: " + trackingNumber);
-
         // Optional: clear fields after save
         // clearForm();
     }
-    //FAKE RIGHT NOW
+
     private String generateTrackingNumber() {
+        // 9‑digit random number, padded with leading zeros if needed
         int num = 100_000_000 + RANDOM.nextInt(900_000_000);
         return String.valueOf(num);
     }
-
 
     private void clearForm() {
         lengthField.clear();
@@ -104,6 +100,64 @@ public class ShippingPageController {
         receiverFirstNameField.clear();
         receiverLastNameField.clear();
         shippingLocationField.clear();
+    }
+
+    //firebase changes start here
+    private void createPackage(){
+        DocumentReference docRef = HelloApplication.fstore.collection("shipments").document(UUID.randomUUID().toString());
+        Map<String, String> data = addShipmentData();
+        ApiFuture<WriteResult> result = docRef.set(data);
+    }
+
+    private Map<String, String> addShipmentData() {
+        Map<String, String> data = new HashMap<>();
+        data.put("Length", lengthField.getText());
+        data.put("Width", widthField.getText());
+        data.put("Height", heightField.getText());
+        data.put("Products", productsField.getText());
+        data.put("Weight", weightField.getText());
+        data.put("Status", "Preparing Shipment");
+        data.put("ShippingLocation", shippingLocationField.getText());
+        data.put("TrackingNumber", generateNonRepeatedTrackingNumber());
+        data.put("CreatedDate", LocalDate.now().toString());
+        data.put("SenderFirstName", senderFirstNameField.getText());
+        data.put("SenderLastName", senderLastNameField.getText());
+        data.put("SenderAddress", senderAddressField.getText());
+        data.put("SenderZip", senderZipField.getText());
+        data.put("ReceiverFirstName", receiverFirstNameField.getText());
+        data.put("ReceiverLastName", receiverLastNameField.getText());
+        data.put("ReceiverZip", receiverZipField.getText());
+        return data;
+    }
+
+    private String generateNonRepeatedTrackingNumber() {
+        String trackNum = generateTrackingNumber();
+        ApiFuture<QuerySnapshot> future = HelloApplication.fstore.collection("shipments").get();
+        List<QueryDocumentSnapshot> documents;
+        boolean isRepeat = true;
+        try {
+            documents = future.get().getDocuments();
+            while(isRepeat){
+                if (!documents.isEmpty()) {
+                    for (QueryDocumentSnapshot document : documents) {
+                        if (document.getData().get("TrackingNumber").equals(trackNum)) {
+                            System.out.println("Tracking number already exists in the database");
+                            trackNum = generateTrackingNumber();
+                        }
+                        else{
+                            isRepeat = false;
+                        }
+                    }
+                }
+                else{
+                    break;
+                }
+            }
+        } catch (InterruptedException | ExecutionException ex) {
+            ex.printStackTrace();
+        }
+        trackingNumber = trackNum;
+        return trackNum;
     }
 
     // Simple data class
