@@ -27,7 +27,7 @@ public class ShippingPageController {
     @FXML private TextArea shippingLocationField;
     @FXML private TextField receiverZipField;
     @FXML private Label resultLabel;
-    private String trackingNumber;
+    private String trackingNumber = generateNonRepeatedTrackingNumber();
     // Simple in‑memory store of created shipments
     private static final List<Shipment> SHIPMENTS = new ArrayList<>();
     private static final Random RANDOM = new Random();
@@ -104,7 +104,7 @@ public class ShippingPageController {
 
     //firebase changes start here
     private void createPackage(){
-        DocumentReference docRef = HelloApplication.fstore.collection("shipments").document(UUID.randomUUID().toString());
+        DocumentReference docRef = HelloApplication.fstore.collection("shipments").document(trackingNumber);
         Map<String, Object> data = addShipmentData();
         ApiFuture<WriteResult> result = docRef.set(data);
     }
@@ -118,7 +118,7 @@ public class ShippingPageController {
         data.put("Weight", weightField.getText());
         data.put("Status", "Preparing Shipment");
         data.put("ShippingLocation", shippingLocationField.getText());
-        data.put("TrackingNumber", generateNonRepeatedTrackingNumber());
+        data.put("TrackingNumber", trackingNumber);
         data.put("CreatedDate", LocalDate.now().toString());
         data.put("SenderFirstName", senderFirstNameField.getText());
         data.put("SenderLastName", senderLastNameField.getText());
@@ -171,8 +171,8 @@ public class ShippingPageController {
                 for (QueryDocumentSnapshot document : documents) {
                     if (document.getData().get("FirstName").equals(receiverFirstNameField.getText())
                     && document.getData().get("LastName").equals(receiverLastNameField.getText())
-                    && document.getData().get("Address").equals(senderAddressField.getText())
-                    && document.getData().get("ReceiverZip").equals(receiverZipField.getText())) {
+                    && document.getData().get("Address").equals(shippingLocationField.getText())
+                    && document.getData().get("ZipCode").equals(receiverZipField.getText())) {
                         return document.getData().get("ID").toString();
                     }
                 }
