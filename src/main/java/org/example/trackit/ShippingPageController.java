@@ -27,7 +27,7 @@ public class ShippingPageController {
     @FXML private TextArea shippingLocationField;
     @FXML private TextField receiverZipField;
     @FXML private Label resultLabel;
-    String trackingNumber;
+    private String trackingNumber;
     // Simple in‑memory store of created shipments
     private static final List<Shipment> SHIPMENTS = new ArrayList<>();
     private static final Random RANDOM = new Random();
@@ -105,12 +105,12 @@ public class ShippingPageController {
     //firebase changes start here
     private void createPackage(){
         DocumentReference docRef = HelloApplication.fstore.collection("shipments").document(UUID.randomUUID().toString());
-        Map<String, String> data = addShipmentData();
+        Map<String, Object> data = addShipmentData();
         ApiFuture<WriteResult> result = docRef.set(data);
     }
 
-    private Map<String, String> addShipmentData() {
-        Map<String, String> data = new HashMap<>();
+    private Map<String, Object> addShipmentData() {
+        Map<String, Object> data = new HashMap<>();
         data.put("Length", lengthField.getText());
         data.put("Width", widthField.getText());
         data.put("Height", heightField.getText());
@@ -124,9 +124,11 @@ public class ShippingPageController {
         data.put("SenderLastName", senderLastNameField.getText());
         data.put("SenderAddress", senderAddressField.getText());
         data.put("SenderZip", senderZipField.getText());
+        data.put("SenderID", MasterPageController.userLoggedIn.getUid());
         data.put("ReceiverFirstName", receiverFirstNameField.getText());
         data.put("ReceiverLastName", receiverLastNameField.getText());
         data.put("ReceiverZip", receiverZipField.getText());
+        data.put("ReceiverID", getReceiverID());
         return data;
     }
 
@@ -160,6 +162,26 @@ public class ShippingPageController {
         return trackNum;
     }
 
+    private String getReceiverID(){
+        ApiFuture<QuerySnapshot> future = HelloApplication.fstore.collection("users").get();
+        List<QueryDocumentSnapshot> documents;
+        try {
+            documents = future.get().getDocuments();
+            if (!documents.isEmpty()) {
+                for (QueryDocumentSnapshot document : documents) {
+                    if (document.getData().get("FirstName").equals(receiverFirstNameField.getText())
+                    && document.getData().get("LastName").equals(receiverLastNameField.getText())
+                    && document.getData().get("Address").equals(senderAddressField.getText())
+                    && document.getData().get("ReceiverZip").equals(receiverZipField.getText())) {
+                        return document.getData().get("ID").toString();
+                    }
+                }
+            }
+        } catch (InterruptedException | ExecutionException ex) {
+            ex.printStackTrace();
+        }
+        return "0";
+    }
     // Simple data class
     protected static class Shipment {
         protected final String trackingNumber;

@@ -1,5 +1,6 @@
 package org.example.trackit;
 
+import com.google.firebase.auth.UserRecord;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -115,22 +116,20 @@ public class MasterPageController {
 //Create display name for signed-in user
 
     private boolean loggedIn = false;
-    private String userDisplayName = "Login / Signup";
+    protected static UserRecord userLoggedIn;
 
     // Call this after successful login/signup
-    public void setUserLoggedIn(String displayName) {
+    public void setUserLoggedIn(UserRecord user) {
         loggedIn = true;
-        userDisplayName = displayName;
+        userLoggedIn = user;
         updateLoginSignupButton();
     }
 
     private void updateLoginSignupButton() {
         if (loggedIn) {
-            loginSignupButton.setText(userDisplayName);
+            loginSignupButton.setText(userLoggedIn.getDisplayName());
         } else {
             loginSignupButton.setText("Login / Signup");
         }
     }
-
-
 }

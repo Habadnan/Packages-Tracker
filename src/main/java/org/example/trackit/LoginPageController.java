@@ -27,7 +27,7 @@ public class LoginPageController {
     @FXML
     private PasswordField loginPasswordField;
 
-    UserRecord userRecord;
+    private UserRecord userRecord;
     @FXML
     private void initialize() {
         loginButton.setDisable(true);
@@ -52,7 +52,7 @@ public class LoginPageController {
             Parent masterRoot = stage.getScene().getRoot();
             if (masterRoot != null) {
                 MasterPageController masterController = (MasterPageController) masterRoot.getUserData();
-                masterController.setUserLoggedIn(userRecord.getDisplayName());
+                masterController.setUserLoggedIn(userRecord);
                 masterController.loadAndSetContent("user-main-page.fxml");
             }
         }

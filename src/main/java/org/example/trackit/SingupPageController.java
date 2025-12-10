@@ -47,6 +47,7 @@ public class SingupPageController {
     @FXML
     private Button createUserButton;
 
+    private UserRecord userRecord;
 
     @FXML
     private void initialize() {
@@ -101,7 +102,7 @@ public class SingupPageController {
             Parent masterRoot = stage.getScene().getRoot();
             if (masterRoot != null) {
                 MasterPageController masterController = (MasterPageController) masterRoot.getUserData();
-                masterController.setUserLoggedIn(signupUsernameField.getText());
+                masterController.setUserLoggedIn(userRecord);
                 masterController.loadAndSetContent("user-main-page.fxml");
             }
         }
@@ -124,6 +125,7 @@ public class SingupPageController {
             Map<String, String> data = addUserData(userRecord);
 
             ApiFuture<WriteResult> result = docRef.set(data);
+            this.userRecord = userRecord;
             return true;
 
         } catch (FirebaseAuthException ex) {
