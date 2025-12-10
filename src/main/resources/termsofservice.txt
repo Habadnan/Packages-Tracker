@@ -1,0 +1,13 @@
+Track‑IT is a student project intended for learning and experimentation. It may break, misbehave, or simply decide to take a nap without warning. By using it, you accept that glitches, bugs, and mildly confusing design decisions are all part of the experience.
+
+You agree not to use the app for anything illegal, harmful, or obviously sketchy. Do not try to hack it, reverse engineer it just for chaos, or pretend to be someone else while using it. If you choose a terrible password, that is unfortunately a you‑problem.
+
+Any tracking information you enter is assumed to be yours to use. The app does not magically verify that you are the rightful owner of every package number you type in. Please be respectful of other people’s privacy and shipments.
+
+Data shown in the app comes from shipping carriers and other third‑party services. Delivery times, status updates, and “out for delivery” messages are not guaranteed to be accurate, up‑to‑the‑minute, or emotionally satisfying. Do not plan life‑or‑death events around the estimated arrival of your socks.
+
+To the maximum extent allowed by your local laws, the creators of Track‑IT are not responsible for lost packages, late deliveries, spontaneous coffee spills, missed birthdays, or any other damage allegedly caused by looking at, or failing to look at, the app.
+
+The project may change, be updated, or vanish altogether without notice. New features may appear; old ones may disappear; some may never quite work as intended. By continuing to use Track‑IT, you accept that the app evolves and that breaking changes might happen.
+
+If any part of this text is found to be invalid or unenforceable in your region, the rest should still be read with a sense of humor and common sense. For actual legal protection or real commercial use, consult a lawyer and replace this entire text with proper terms drafted for your situation.
