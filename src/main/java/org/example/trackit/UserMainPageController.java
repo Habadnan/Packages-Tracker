@@ -1,8 +1,5 @@
 package org.example.trackit;
 
-import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.QueryDocumentSnapshot;
-import com.google.cloud.firestore.QuerySnapshot;
 import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,8 +10,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.util.List;
-import java.util.concurrent.ExecutionException;
+
+import static org.example.trackit.GuestMainPageController.verify;
 
 public class UserMainPageController {
     @FXML
@@ -30,6 +27,7 @@ public class UserMainPageController {
 
     @FXML
     private Label invalidTrackingID;
+    public static boolean clickedOngoing;
 
     @FXML
     private void initialize() {
@@ -74,9 +72,11 @@ public class UserMainPageController {
             }
         }
         else if (source == trackButtonOngoing) {
+            clickedOngoing = true;
             fxmlFile = "tracking-page.fxml";
         }
         else if (source == trackButtonPast) {
+            clickedOngoing = false;
             fxmlFile = "tracking-page.fxml";
         }
         else if (source == shipButton) {
@@ -97,22 +97,5 @@ public class UserMainPageController {
         return verify(trackingNumber);
     }
 
-    static boolean verify(String trackingNumber) {
-        ApiFuture<QuerySnapshot> future = HelloApplication.fstore.collection("shipments").get();
-        List<QueryDocumentSnapshot> documents;
-        try {
-            documents = future.get().getDocuments();
-            if (!documents.isEmpty()) {
-                for (QueryDocumentSnapshot document : documents) {
-                    if (document.getData().get("TrackingNumber").equals(trackingNumber)) {
-                        return true;
-                    }
-                }
-            }
-        } catch (InterruptedException | ExecutionException ex) {
-            ex.printStackTrace();
-        }
-        return false;
-    }
 
 }

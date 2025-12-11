@@ -168,4 +168,10 @@ public class MasterPageController {
             loginSignupButton.setText("Login / Signup");
         }
     }
+
+    public void setLoggedOut() {
+        loggedIn = false;
+        userLoggedIn = null;
+        loginSignupButton.setText("Login / Signup");
+    }
 }

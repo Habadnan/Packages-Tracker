@@ -1,7 +1,6 @@
 package org.example.trackit;
 
 import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.CollectionReference;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import javafx.event.ActionEvent;
@@ -10,7 +9,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -69,6 +67,8 @@ public class DetailTrackingPageController {
     private Label locationLabel;
     @FXML
     private Label addressLabel;
+    @FXML
+    private Label estDateLabel;
     // ...add more as needed
 
     private void populateDetails() {
@@ -83,7 +83,10 @@ public class DetailTrackingPageController {
             locationLabel.setText(trackingInfo.location);
         if (addressLabel != null)
             addressLabel.setText(trackingInfo.location);
-
+        if(orderDateLabel != null)
+            orderDateLabel.setText(trackingInfo.orderDate);
+        if(estDateLabel != null)
+            estDateLabel.setText(trackingInfo.estimatedDate);
 
         itemsBox.getChildren().clear(); // Clear previous labels if any
         for (String item : trackingInfo.items.split(",")) {

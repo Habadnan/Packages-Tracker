@@ -1,15 +1,20 @@
 package org.example.trackit;
 
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.QueryDocumentSnapshot;
+import com.google.cloud.firestore.QuerySnapshot;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class TrackingPageController {
 
@@ -18,19 +23,29 @@ public class TrackingPageController {
 
     @FXML
     public void initialize() {
-        List<TrackingInfo> trackingData = List.of(
-                new TrackingInfo("123456789", "11/14/2025", "Wireless headphone, phone case", "Warehouse", "11/17/2025", "On the way"),
-                new TrackingInfo("987654321", "11/15/2025", "Shoes", "Sorting Facility", "11/18/2025", "Delayed"),
-                new TrackingInfo("555111222", "11/16/2025", "Book, Charger, Cable, Adapter, Power Bank, Mouse, Keyboard", "Out for delivery", "11/20/2025", "Out for delivery"),
-                new TrackingInfo("444333222", "11/16/2025", "Tablet, Pen", "Local Office", "11/20/2025", "In transit"),
-                new TrackingInfo("111000999", "11/17/2025", "Monitor, Stand", "Delivery Truck", "11/22/2025", "Delivered"),
-                new TrackingInfo("111000999", "11/17/2025", "Monitor, Stand", "Delivery Truck", "11/22/2025", "Delivered"),
-                new TrackingInfo("111000999", "11/17/2025", "Monitor, Stand", "Delivery Truck", "11/22/2025", "Delivered"),
-                new TrackingInfo("111000999", "11/17/2025", "Monitor, Stand", "Delivery Truck", "11/22/2025", "Delivered"),
-                new TrackingInfo("111000999", "11/17/2025", "Monitor, Stand", "Delivery Truck", "11/22/2025", "Delivered"),
-                new TrackingInfo("111000999", "11/17/2025", "Monitor, Stand", "Delivery Truck", "11/22/2025", "Delivered")
+        //        List<TrackingInfo> trackingData = List.of(
+//                new TrackingInfo("123456789", "11/14/2025", "Wireless headphone, phone case", "Warehouse", "11/17/2025", "On the way"),
+//                new TrackingInfo("987654321", "11/15/2025", "Shoes", "Sorting Facility", "11/18/2025", "Delayed"),
+//                new TrackingInfo("555111222", "11/16/2025", "Book, Charger, Cable, Adapter, Power Bank, Mouse, Keyboard", "Out for delivery", "11/20/2025", "Out for delivery"),
+//                new TrackingInfo("444333222", "11/16/2025", "Tablet, Pen", "Local Office", "11/20/2025", "In transit"),
+//                new TrackingInfo("111000999", "11/17/2025", "Monitor, Stand", "Delivery Truck", "11/22/2025", "Delivered"),
+//                new TrackingInfo("111000999", "11/17/2025", "Monitor, Stand", "Delivery Truck", "11/22/2025", "Delivered"),
+//                new TrackingInfo("111000999", "11/17/2025", "Monitor, Stand", "Delivery Truck", "11/22/2025", "Delivered"),
+//                new TrackingInfo("111000999", "11/17/2025", "Monitor, Stand", "Delivery Truck", "11/22/2025", "Delivered"),
+//                new TrackingInfo("111000999", "11/17/2025", "Monitor, Stand", "Delivery Truck", "11/22/2025", "Delivered"),
+//                new TrackingInfo("111000999", "11/17/2025", "Monitor, Stand", "Delivery Truck", "11/22/2025", "Delivered")
+//
+//        );
 
-        );
+        List<TrackingInfo> trackingData = new ArrayList<>();
+        if(UserMainPageController.clickedOngoing){
+            //fill the trackingData list with packages that do not have the status "Delivered"
+            populateWithOngoing(trackingData);
+        }
+        else{
+            //user clicked past packages so only fill list with past packages that have the status "Delivered"
+            populateWithDelivered(trackingData);
+        }
         int colNum = 3;
         trackingListGrid.getChildren().clear();
 
@@ -122,7 +137,47 @@ public class TrackingPageController {
             e.printStackTrace();
         }
     }
+    private void populateWithOngoing(List<TrackingInfo> list){
+        ApiFuture<QuerySnapshot> future = HelloApplication.fstore.collection("shipments").get();
+        List<QueryDocumentSnapshot> documents;
+        try {
+            documents = future.get().getDocuments();
+            if (!documents.isEmpty()) {
+                for (QueryDocumentSnapshot document : documents) {
+                    if (!(document.getData().get("Status").equals("Delivered"))
+                            && document.getData().get("ReceiverID").equals(MasterPageController.userLoggedIn.getUid())
+                            || document.getData().get("SenderID").equals(MasterPageController.userLoggedIn.getUid())) {
+                        LocalDate estimated = LocalDate.parse(document.get("CreatedDate").toString()).plusDays(5);
+                        list.add(new TrackingInfo(document.get("TrackingNumber").toString(), document.get("CreatedDate").toString(), document.get("Products").toString(),
+                                document.get("ShippingLocation").toString(), estimated.toString(), document.get("Status").toString()));
+                    }
+                }
+            }
+        } catch (InterruptedException | ExecutionException ex) {
+            ex.printStackTrace();
+        }
+    }
 
+    private void populateWithDelivered(List<TrackingInfo> list) {
+        ApiFuture<QuerySnapshot> future = HelloApplication.fstore.collection("shipments").get();
+        List<QueryDocumentSnapshot> documents;
+        try {
+            documents = future.get().getDocuments();
+            if (!documents.isEmpty()) {
+                for (QueryDocumentSnapshot document : documents) {
+                    if (document.getData().get("Status").equals("Delivered")
+                            && document.getData().get("ReceiverID").equals(MasterPageController.userLoggedIn.getUid())
+                            || document.getData().get("SenderID").equals(MasterPageController.userLoggedIn.getUid())) {
+                        LocalDate estimated = LocalDate.parse(document.get("CreatedDate").toString()).plusDays(5);
+                        list.add(new TrackingInfo(document.get("TrackingNumber").toString(), document.get("CreatedDate").toString(), document.get("Products").toString(),
+                                document.get("ShippingLocation").toString(), estimated.toString(), document.get("Status").toString()));
+                    }
+                }
+            }
+        } catch (InterruptedException | ExecutionException ex) {
+            ex.printStackTrace();
+        }
+    }
 
 
     public static class TrackingInfo {
