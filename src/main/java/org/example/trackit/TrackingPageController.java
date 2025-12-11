@@ -166,8 +166,8 @@ public class TrackingPageController {
             if (!documents.isEmpty()) {
                 for (QueryDocumentSnapshot document : documents) {
                     if (document.getData().get("Status").equals("Delivered")
-                            && document.getData().get("ReceiverID").equals(MasterPageController.userLoggedIn.getUid())
-                            || document.getData().get("SenderID").equals(MasterPageController.userLoggedIn.getUid())) {
+                            && (document.getData().get("ReceiverID").equals(MasterPageController.userLoggedIn.getUid())
+                            || document.getData().get("SenderID").equals(MasterPageController.userLoggedIn.getUid()))) {
                         LocalDate estimated = LocalDate.parse(document.get("CreatedDate").toString()).plusDays(5);
                         list.add(new TrackingInfo(document.get("TrackingNumber").toString(), document.get("CreatedDate").toString(), document.get("Products").toString(),
                                 document.get("ShippingLocation").toString(), estimated.toString(), document.get("Status").toString()));
