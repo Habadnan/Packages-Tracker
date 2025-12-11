@@ -35,6 +35,10 @@
                             styleClass="track-main-page-button"/>
                 </HBox>
 
+                <VBox alignment="CENTER">
+                    <Label alignment="CENTER_LEFT" fx:id="invalidTrackingID" style="-fx-text-fill:red; -fx-font-size: 40; -fx-font-weight: bold"/>
+                </VBox>
+
 
                 <HBox alignment="CENTER" spacing="100">
                     <VBox alignment="TOP_LEFT" spacing="20">

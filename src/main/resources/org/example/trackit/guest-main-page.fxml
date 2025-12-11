@@ -34,6 +34,9 @@
                         styleClass="track-main-page-button"/>
             </HBox>
         </StackPane>
+        <VBox alignment="CENTER">
+            <Label alignment="CENTER_LEFT" fx:id="invalidTrackingID" style="-fx-text-fill:red; -fx-font-size: 40; -fx-font-weight: bold"/>
+        </VBox>
 
         <!-- Why Track With Us Section -->
         <VBox alignment="CENTER" spacing="10">

@@ -104,14 +104,26 @@ public class MasterPageController {
 
     //Public method to load and set content from the master page
     public void loadAndSetContent(String fxmlPath) {
+        loadAndSetContent(fxmlPath, null);
+    }
+
+
+    public void loadAndSetContent(String fxmlPath, String trackingID) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent content = loader.load();
+
+            if ("detail-tracking-page.fxml".equals(fxmlPath)) {
+                DetailTrackingPageController controller = loader.getController();
+                controller.setTrackingID(trackingID); // for detail page
+            }
+
             setContent(content);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
 //Create display name for signed-in user
 
