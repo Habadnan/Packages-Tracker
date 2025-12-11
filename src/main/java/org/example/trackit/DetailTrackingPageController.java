@@ -6,16 +6,21 @@ import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.time.LocalDate;
 import java.util.concurrent.ExecutionException;
 
 public class DetailTrackingPageController {
 
-
+    @FXML
+    public Button backButton;
     private TrackingPageController.TrackingInfo trackingInfo;
     private String trackingID;
 
@@ -87,5 +92,12 @@ public class DetailTrackingPageController {
             itemsBox.getChildren().add(itemLabel);
         }
     }
-
+    public void goBack(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Parent masterRoot = stage.getScene().getRoot();
+        if (masterRoot != null) {
+            MasterPageController masterController = (MasterPageController) masterRoot.getUserData();
+            masterController.goBackOnePage();
+        }
+    }
 }

@@ -9,6 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import static org.example.trackit.MasterPageController.userLoggedIn;
+
 public class SupportPageController {
     @FXML
     private TextField supportNameField;
@@ -37,12 +39,21 @@ public class SupportPageController {
 
     @FXML
     public void handleBackToHomeButton(ActionEvent event) {
-        // Get reference to stage and master controller
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent masterRoot = stage.getScene().getRoot();
         if (masterRoot != null) {
             MasterPageController masterController = (MasterPageController) masterRoot.getUserData();
-            masterController.loadAndSetContent("guest-main-page.fxml");
+
+            // decide target based on whether a user is logged in
+            String targetFxml;
+            if (userLoggedIn != null) {
+                targetFxml = "user-main-page.fxml";
+            } else {
+                targetFxml = "guest-main-page.fxml";
+            }
+
+            masterController.loadAndSetContent(targetFxml);
         }
     }
+
 }

@@ -13,7 +13,7 @@
         <!-- LEFT COLUMN -->
         <VBox spacing="22" alignment="TOP_LEFT" prefWidth="380" maxWidth="430" style="-fx-background-color: white">
             <HBox spacing="16" alignment="CENTER_LEFT">
-                <Button fx:id="backButton" text="← Back to Orders" styleClass="track-button-border"/>
+                <Button fx:id="backButton" onAction="#goBack" text="← Back!" styleClass="track-button-border"/>
                 <Label text="Order Details" style="-fx-font-size: 25px; -fx-font-weight: bold; -fx-text-fill: #493CD6;" />
             </HBox>
             <Label fx:id="trackingNumLabel"  styleClass="detail-section-header" />

@@ -10,7 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ResourceBundle;
 
-public class MiscellaneousController implements Initializable {
+public class TOSPageController implements Initializable {
 
     @FXML
     private Label termsLabel;

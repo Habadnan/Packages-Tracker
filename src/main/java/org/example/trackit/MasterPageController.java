@@ -59,13 +59,21 @@ public class MasterPageController {
         String fxmlFile = null;
 
         if (source == homePageButton) {
-            fxmlFile = "guest-main-page.fxml";
+            if (loggedIn) {
+                fxmlFile = "user-main-page.fxml";
+            } else {
+                fxmlFile = "guest-main-page.fxml";
+            }
         }
         else if (source == supportButton) {
             fxmlFile = "support-page.fxml";
         }
         else if (source == loginSignupButton) {
-            fxmlFile = "login-page.fxml";
+            if(loggedIn) {
+                fxmlFile = "account-details-page.fxml";
+            } else {
+                fxmlFile = "login-page.fxml";
+            }
         }
         else if (source == ongoingTrackingMenuItem) {
             fxmlFile = "tracking-page.fxml";
@@ -107,9 +115,14 @@ public class MasterPageController {
         loadAndSetContent(fxmlPath, null);
     }
 
+    private String currentFxml;
+    private String previousFxml;
 
     public void loadAndSetContent(String fxmlPath, String trackingID) {
         try {
+            previousFxml = currentFxml;
+            currentFxml = fxmlPath;
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent content = loader.load();
 
@@ -123,6 +136,17 @@ public class MasterPageController {
             e.printStackTrace();
         }
     }
+
+    //helper to go back a page
+    public void goBackOnePage() {
+        if (previousFxml != null) {
+            String target = previousFxml;
+            // optional: clear previousFxml to avoid looping
+            previousFxml = null;
+            loadAndSetContent(target);
+        }
+    }
+
 
 
 //Create display name for signed-in user

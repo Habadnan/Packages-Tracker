@@ -19,7 +19,7 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        //start firebase up
+        // start firebase
         fstore = contextFirebase.firebase();
         fauth = FirebaseAuth.getInstance();
 
@@ -28,13 +28,10 @@ public class HelloApplication extends Application {
         MasterPageController masterController = masterLoader.getController();
         masterRoot.setUserData(masterController);
 
-        FXMLLoader contentLoader = new FXMLLoader(getClass().getResource("guest-main-page.fxml"));
-        Parent content = contentLoader.load();
-        masterController.setContent(content);
+        // INITIAL CONTENT *** use loadAndSetContent instead of setContent ***
+        masterController.loadAndSetContent("guest-main-page.fxml");
 
         Scene scene = new Scene(masterRoot, 1200, 800);
-
-        // Attach the CSS stylesheet here
         scene.getStylesheets().add(
                 getClass().getResource("styles.css").toExternalForm()
         );

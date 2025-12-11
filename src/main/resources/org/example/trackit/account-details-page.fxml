@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.trackit.AccountDetailsPageController"
+            prefHeight="400.0" prefWidth="600.0"
+            style="-fx-background-color: white">
+
+    <VBox alignment="CENTER"
+          spacing="20"
+          AnchorPane.topAnchor="20"
+          AnchorPane.leftAnchor="40"
+          AnchorPane.rightAnchor="40"
+          AnchorPane.bottomAnchor="20">
+
+        <!-- Page Title -->
+        <Label alignment="CENTER" text="Account Details" styleClass="main-Title"/>
+
+        <!-- Card container for fields -->
+        <VBox spacing="30" styleClass="tracking-info-card">
+
+            <!-- First Name -->
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <Label text="First Name:" styleClass="about-section-title"/>
+                <Label fx:id="firstNameLabel" styleClass="detail-value-label"/>
+            </HBox>
+
+            <!-- Last Name -->
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <Label text="Last Name:" styleClass="about-section-title"/>
+                <Label fx:id="lastNameLabel" styleClass="detail-value-label"/>
+            </HBox>
+
+            <!-- Username -->
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <Label text="Username:" styleClass="about-section-title"/>
+                <Label fx:id="usernameLabel" styleClass="detail-value-label"/>
+            </HBox>
+
+            <!-- Email -->
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <Label text="Email:" styleClass="about-section-title"/>
+                <Label fx:id="emailLabel" styleClass="detail-value-label"/>
+            </HBox>
+
+            <!-- Password -->
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <Label text="Password:" styleClass="about-section-title"/>
+                <Label fx:id="passwordLabel" styleClass="detail-value-label"/>
+            </HBox>
+
+            <!-- Phone Number -->
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <Label text="Phone Number:" styleClass="about-section-title"/>
+                <Label fx:id="phoneLabel" styleClass="detail-value-label"/>
+            </HBox>
+
+            <!-- Address -->
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <Label text="Address:" styleClass="about-section-title"/>
+                <Label fx:id="addressLabel" styleClass="detail-value-label"/>
+            </HBox>
+
+            <!-- State -->
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <Label text="State:" styleClass="about-section-title"/>
+                <Label fx:id="stateLabel" styleClass="detail-value-label"/>
+            </HBox>
+
+            <!-- Town -->
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <Label text="Town:" styleClass="about-section-title"/>
+                <Label fx:id="townLabel" styleClass="detail-value-label"/>
+            </HBox>
+
+            <!-- Zip Code -->
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <Label text="Zip Code:" styleClass="about-section-title"/>
+                <Label fx:id="zipLabel" styleClass="detail-value-label"/>
+            </HBox>
+
+        </VBox>
+
+        <!-- Logout button-->
+        <VBox alignment="CENTER">
+            <Button
+                    alignment="CENTER"
+                    fx:id="logoutButton"
+                    onAction="#logOut"
+                    text="LogOut"
+                    style="-fx-pref-width: 220px;"
+                    styleClass="track-button"/>
+        </VBox>
+
+
+    </VBox>
+
+</AnchorPane>
