@@ -81,11 +81,9 @@ public class LoginPageController {
         try{
             documents = future.get().getDocuments();
             if(!documents.isEmpty()){
-                System.out.println("Getting (reading) data from firebase database....");
                 for (QueryDocumentSnapshot document : documents){
                     if(document.getData().get("Username").equals(username) || document.getData().get("Email").equals(username)){
                         if(document.getData().get("Password").equals(loginPasswordField.getText())){
-                            System.out.println("Successfully logged in");
                             userRecord = HelloApplication.fauth.getUser(document.getData().get("ID").toString());
                             key = true;
                             break;
@@ -101,7 +99,6 @@ public class LoginPageController {
                     }
                 }
             } else{
-                System.out.println("No account associated with the provided username/email");
             }
         }
         catch (InterruptedException | ExecutionException | FirebaseAuthException ex)

@@ -25,61 +25,61 @@
             <!-- First Name -->
             <HBox spacing="12" alignment="CENTER_LEFT">
                 <Label text="First Name:" styleClass="about-section-title"/>
-                <Label fx:id="firstNameLabel" styleClass="detail-value-label"/>
+                <Label fx:id="firstNameLabel" styleClass="detail-sub-label"/>
             </HBox>
 
             <!-- Last Name -->
             <HBox spacing="12" alignment="CENTER_LEFT">
                 <Label text="Last Name:" styleClass="about-section-title"/>
-                <Label fx:id="lastNameLabel" styleClass="detail-value-label"/>
+                <Label fx:id="lastNameLabel" styleClass="detail-sub-label"/>
             </HBox>
 
             <!-- Username -->
             <HBox spacing="12" alignment="CENTER_LEFT">
                 <Label text="Username:" styleClass="about-section-title"/>
-                <Label fx:id="usernameLabel" styleClass="detail-value-label"/>
+                <Label fx:id="usernameLabel" styleClass="detail-sub-label"/>
             </HBox>
 
             <!-- Email -->
             <HBox spacing="12" alignment="CENTER_LEFT">
                 <Label text="Email:" styleClass="about-section-title"/>
-                <Label fx:id="emailLabel" styleClass="detail-value-label"/>
+                <Label fx:id="emailLabel" styleClass="detail-sub-label"/>
             </HBox>
 
             <!-- Password -->
             <HBox spacing="12" alignment="CENTER_LEFT">
                 <Label text="Password:" styleClass="about-section-title"/>
-                <Label fx:id="passwordLabel" styleClass="detail-value-label"/>
+                <Label fx:id="passwordLabel" styleClass="detail-sub-label"/>
             </HBox>
 
             <!-- Phone Number -->
             <HBox spacing="12" alignment="CENTER_LEFT">
                 <Label text="Phone Number:" styleClass="about-section-title"/>
-                <Label fx:id="phoneLabel" styleClass="detail-value-label"/>
+                <Label fx:id="phoneLabel" styleClass="detail-sub-label"/>
             </HBox>
 
             <!-- Address -->
             <HBox spacing="12" alignment="CENTER_LEFT">
                 <Label text="Address:" styleClass="about-section-title"/>
-                <Label fx:id="addressLabel" styleClass="detail-value-label"/>
+                <Label fx:id="addressLabel" styleClass="detail-sub-label"/>
             </HBox>
 
             <!-- State -->
             <HBox spacing="12" alignment="CENTER_LEFT">
                 <Label text="State:" styleClass="about-section-title"/>
-                <Label fx:id="stateLabel" styleClass="detail-value-label"/>
+                <Label fx:id="stateLabel" styleClass="detail-sub-label"/>
             </HBox>
 
             <!-- Town -->
             <HBox spacing="12" alignment="CENTER_LEFT">
                 <Label text="Town:" styleClass="about-section-title"/>
-                <Label fx:id="townLabel" styleClass="detail-value-label"/>
+                <Label fx:id="townLabel" styleClass="detail-sub-label"/>
             </HBox>
 
             <!-- Zip Code -->
             <HBox spacing="12" alignment="CENTER_LEFT">
                 <Label text="Zip Code:" styleClass="about-section-title"/>
-                <Label fx:id="zipLabel" styleClass="detail-value-label"/>
+                <Label fx:id="zipLabel" styleClass="detail-sub-label"/>
             </HBox>
 
         </VBox>

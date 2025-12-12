@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -55,7 +56,11 @@ public class UserMainPageController {
 
             // basic format check: exactly 9 digits
             if (!input.matches("\\d{9}")) {
-                invalidTrackingID.setText("INVALID TRACKING ID NUMBER");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Warning");
+                alert.setHeaderText("Invalid name");
+                alert.setContentText("Username is already taken");
+                alert.showAndWait();
                 return;
             }
 
@@ -68,7 +73,11 @@ public class UserMainPageController {
                 // assuming you changed this method as discussed earlier
                 masterController.loadAndSetContent("detail-tracking-page.fxml", input);
             } else {
-                invalidTrackingID.setText("INVALID TRACKING ID NUMBER");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Warning");
+                alert.setHeaderText("Invalid name");
+                alert.setContentText("Username is already taken");
+                alert.showAndWait();
             }
         }
         else if (source == trackButtonOngoing) {

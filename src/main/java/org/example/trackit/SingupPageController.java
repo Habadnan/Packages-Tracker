@@ -87,7 +87,7 @@ public class SingupPageController {
 
 
     @FXML
-    public void handleCreateUserSignup(ActionEvent event) {
+    private void handleCreateUserSignup(ActionEvent event) {
         if(isRepeatUsername(signupUsernameField.getText())) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Warning");

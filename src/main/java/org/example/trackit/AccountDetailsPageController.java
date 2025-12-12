@@ -54,6 +54,7 @@ public class AccountDetailsPageController {
                         lastNameLabel.setText(document.get("LastName").toString());
                         usernameLabel.setText(user.getDisplayName());
                         emailLabel.setText(user.getEmail());
+                        passwordLabel.setText(document.get("Password").toString());
                         phoneLabel.setText(document.get("PhoneNumber").toString());
                         addressLabel.setText(document.get("Address").toString());
                         stateLabel.setText(document.get("State").toString());

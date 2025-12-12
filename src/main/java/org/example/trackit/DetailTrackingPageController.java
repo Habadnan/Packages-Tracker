@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -18,31 +19,20 @@ import java.util.concurrent.ExecutionException;
 public class DetailTrackingPageController {
 
     @FXML
-    public Button backButton;
+    private Button backButton;
     private TrackingPageController.TrackingInfo trackingInfo;
     private String trackingID;
     private String packageType;
 
+    @FXML
+    private Label daysRemainingLabel;
+    @FXML
+    private ProgressBar deliveryProgressBar;
+    @FXML
+    private Label progressLabel;
+
+
     // Call this from the loader!
-    public void setTrackingInfo(TrackingPageController.TrackingInfo info) {
-        this.trackingInfo = info;
-        DocumentReference docRef = HelloApplication.fstore.collection("shipments").document(info.trackingNumber);
-        ApiFuture<DocumentSnapshot> future = docRef.get();
-        try {
-            DocumentSnapshot document = future.get();
-            if (document.exists()) {
-                if(document.getData().get("SenderID").equals(MasterPageController.userLoggedIn.getUid())){
-                    packageType = "Shipping";
-                }
-                else{
-                    packageType = "Receiving";
-                }
-            }
-        } catch (ExecutionException | InterruptedException e) {
-            e.printStackTrace();
-        }
-        populateDetails();
-    }
     public void setTrackingID(String trackingID) {
         this.trackingID = trackingID;
         DocumentReference docRef = HelloApplication.fstore
@@ -98,7 +88,7 @@ public class DetailTrackingPageController {
     private void populateDetails() {
         if (trackingInfo == null) return;
 
-        // Example: set your FXML labels to show info
+        //set FXML labels to show info
         if (trackingNumLabel != null)
             trackingNumLabel.setText("Tracking ID: " + trackingInfo.trackingNumber);
         if (statusLabel != null)
@@ -120,6 +110,38 @@ public class DetailTrackingPageController {
             itemLabel.getStyleClass().add("detail-value-label");
             itemsBox.getChildren().add(itemLabel);
         }
+
+        // ----- Progress calculation -----
+        try {
+            LocalDate created = LocalDate.parse(trackingInfo.orderDate);
+            LocalDate estimated = LocalDate.parse(trackingInfo.estimatedDate);
+            LocalDate today = LocalDate.now();
+
+            long totalDays = Math.max(1, java.time.temporal.ChronoUnit.DAYS.between(created, estimated));
+            long daysPassed = java.time.temporal.ChronoUnit.DAYS.between(created, today);
+            long daysRemaining = java.time.temporal.ChronoUnit.DAYS.between(today, estimated);
+
+            // Clamp values
+            if (daysPassed < 0) daysPassed = 0;
+            if (daysPassed > totalDays) daysPassed = totalDays;
+
+            double progress = (double) daysPassed / (double) totalDays;
+
+            if (deliveryProgressBar != null)
+                deliveryProgressBar.setProgress(progress);   // value 0..1[web:53]
+            if (daysRemainingLabel != null)
+                daysRemainingLabel.setText(Long.toString(Math.max(0, daysRemaining)));
+            if (progressLabel != null)
+                progressLabel.setText(String.format("Progress: %d%%", Math.round(progress * 100)));
+
+        } catch (Exception e) {
+            // If parsing fails, show indeterminate bar
+            if (deliveryProgressBar != null)
+                deliveryProgressBar.setProgress(ProgressBar.INDETERMINATE_PROGRESS);
+            if (progressLabel != null)
+                progressLabel.setText("Progress: N/A");
+        }
+
     }
     public void goBack(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

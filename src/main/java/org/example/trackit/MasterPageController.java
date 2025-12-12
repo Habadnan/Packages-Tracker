@@ -25,16 +25,6 @@ public class MasterPageController {
     @FXML
     private Button loginSignupButton;
 
-//Header drop down menu
-    @FXML
-    private MenuButton trackingMenuButton;
-    @FXML
-    private MenuItem ongoingTrackingMenuItem;
-    @FXML
-    private MenuItem pastTrackingMenuItem;
-// ----------------------------------------------------------------
-
-
 //Footer ----------------------------------------------------------------
     @FXML
     private Hyperlink aboutUs;
@@ -80,9 +70,7 @@ public class MasterPageController {
             loadAndSetContent(fxmlFile);
         }
     }
-//----------------------------------------------------------------
-
-
+// Handle Footer -------------------------------------------------
     @FXML
     private void handleFooter(ActionEvent event) {
         Object source = event.getSource();
@@ -144,7 +132,6 @@ public class MasterPageController {
 
 
 //Create display name for signed-in user
-
     private boolean loggedIn = false;
     protected static UserRecord userLoggedIn;
 

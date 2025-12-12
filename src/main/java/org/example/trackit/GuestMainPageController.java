@@ -6,7 +6,6 @@ import com.google.cloud.firestore.QuerySnapshot;
 import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -59,7 +58,6 @@ public class GuestMainPageController {
 
         if (validateTrackingNumber(input)) {
             MasterPageController masterController = (MasterPageController) masterRoot.getUserData();
-            // assuming you changed this method as discussed earlier
             masterController.loadAndSetContent("detail-tracking-page.fxml", input);
         } else {
             invalidTrackingID.setText("INVALID TRACKING ID NUMBER");

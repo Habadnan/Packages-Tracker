@@ -89,6 +89,7 @@ public class ShippingPageController {
         return String.valueOf(num);
     }
 
+    //If we want to clear the form
     private void clearForm() {
         lengthField.clear();
         widthField.clear();
