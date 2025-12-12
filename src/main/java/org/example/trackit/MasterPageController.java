@@ -75,12 +75,6 @@ public class MasterPageController {
                 fxmlFile = "login-page.fxml";
             }
         }
-        else if (source == ongoingTrackingMenuItem) {
-            fxmlFile = "tracking-page.fxml";
-        }
-        else if (source == pastTrackingMenuItem) {
-            fxmlFile = "tracking-page.fxml";
-        }
 
         if (fxmlFile != null) {
             loadAndSetContent(fxmlFile);

@@ -22,7 +22,7 @@ public class TrackingPageController {
     private GridPane trackingListGrid;
 
     @FXML
-    public void initialize() {
+    private void initialize() {
         //        List<TrackingInfo> trackingData = List.of(
 //                new TrackingInfo("123456789", "11/14/2025", "Wireless headphone, phone case", "Warehouse", "11/17/2025", "On the way"),
 //                new TrackingInfo("987654321", "11/15/2025", "Shoes", "Sorting Facility", "11/18/2025", "Delayed"),
@@ -118,25 +118,20 @@ public class TrackingPageController {
 
     private void showTrackingDetail(TrackingInfo info) {
         try {
-            // Load the detail page FXML and controller
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("detail-tracking-page.fxml"));
-            Parent detailRoot = loader.load();
-
-            // Set the data for the detail page
-            DetailTrackingPageController controller = loader.getController();
-            controller.setTrackingInfo(info);
-
-            // Find the current MasterPageController via UserData (like in your LoginPageController)
+            // Find the current MasterPageController via UserData
             Stage stage = (Stage) trackingListGrid.getScene().getWindow();
             Parent masterRoot = stage.getScene().getRoot();
             if (masterRoot != null) {
                 MasterPageController masterController = (MasterPageController) masterRoot.getUserData();
-                masterController.setContent(detailRoot);
+
+                // Navigate using the tracking-aware method and tracking number
+                masterController.loadAndSetContent("detail-tracking-page.fxml", info.trackingNumber);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     private void populateWithOngoing(List<TrackingInfo> list){
         ApiFuture<QuerySnapshot> future = HelloApplication.fstore.collection("shipments").get();
         List<QueryDocumentSnapshot> documents;

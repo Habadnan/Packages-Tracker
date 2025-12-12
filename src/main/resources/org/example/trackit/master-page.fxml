@@ -21,12 +21,7 @@
                     text="Track-It"
             />
             <Pane HBox.hgrow="ALWAYS" />
-            <MenuButton fx:id="trackingMenuButton" style="-fx-background-color: transparent; -fx-font-size: 15px; -fx-font-weight: bold; " text="Tracking" textFill="WHITE">
-                <items>
-                    <MenuItem fx:id="ongoingTrackingMenuItem" onAction="#handleHeaderNav" text="Ongoing" />
-                        <MenuItem fx:id="pastTrackingMenuItem" onAction="#handleHeaderNav" text="Past" />
-                </items>
-            </MenuButton>
+
 
             <Button fx:id="supportButton" onAction="#handleHeaderNav"  style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold;" text="Support" />
             <Button fx:id="loginSignupButton" onAction="#handleHeaderNav" style="-fx-background-color: #ffffff33; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 5 20; -fx-border-radius: 20;" text="Login / Signup"/>
