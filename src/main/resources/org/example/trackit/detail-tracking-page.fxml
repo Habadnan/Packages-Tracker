@@ -36,6 +36,10 @@
                             <Label text="Status:" styleClass="detail-sub-label"/>
                             <Label fx:id="statusLabel" styleClass="detail-status-pill-onway"/>
                         </HBox>
+                        <HBox prefHeight="0.0" prefWidth="380.0" spacing="8.0">
+                            <Label styleClass="detail-sub-label" text="Package Type:"/>
+                            <Label fx:id="packageTypeLabel" styleClass="detail-status-pill-onway"/>
+                        </HBox>
                         <Label text="Items:" styleClass="detail-sub-label"/>
                         <VBox fx:id="itemsBox" spacing="2"/>
                         <Label text="Order Date:" styleClass="detail-sub-label"/>

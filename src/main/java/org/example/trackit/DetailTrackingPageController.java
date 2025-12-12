@@ -21,10 +21,26 @@ public class DetailTrackingPageController {
     public Button backButton;
     private TrackingPageController.TrackingInfo trackingInfo;
     private String trackingID;
+    private String packageType;
 
     // Call this from the loader!
     public void setTrackingInfo(TrackingPageController.TrackingInfo info) {
         this.trackingInfo = info;
+        DocumentReference docRef = HelloApplication.fstore.collection("shipments").document(info.trackingNumber);
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        try {
+            DocumentSnapshot document = future.get();
+            if (document.exists()) {
+                if(document.getData().get("SenderID").equals(MasterPageController.userLoggedIn.getUid())){
+                    packageType = "Shipping";
+                }
+                else{
+                    packageType = "Receiving";
+                }
+            }
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+        }
         populateDetails();
     }
     public void setTrackingID(String trackingID) {
@@ -46,6 +62,12 @@ public class DetailTrackingPageController {
                         estimated.toString(),
                         document.get("Status").toString()
                 );
+                if(document.getData().get("SenderID").equals(MasterPageController.userLoggedIn.getUid())){
+                    packageType = "Shipped by You";
+                }
+                else{
+                    packageType = "Received by You";
+                }
                 populateDetails(); // <-- add this line
             }
         } catch (ExecutionException | InterruptedException e) {
@@ -59,6 +81,8 @@ public class DetailTrackingPageController {
     private Label trackingNumLabel;
     @FXML
     private Label statusLabel;
+    @FXML
+    private Label packageTypeLabel;
     @FXML
     private VBox itemsBox;
     @FXML
@@ -79,6 +103,8 @@ public class DetailTrackingPageController {
             trackingNumLabel.setText("Tracking ID: " + trackingInfo.trackingNumber);
         if (statusLabel != null)
             statusLabel.setText(trackingInfo.status);
+        if(packageTypeLabel != null)
+            packageTypeLabel.setText(packageType);
         if (locationLabel != null)
             locationLabel.setText(trackingInfo.location);
         if (addressLabel != null)

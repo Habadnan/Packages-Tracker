@@ -1,6 +1,8 @@
 package org.example.trackit;
 
 import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
 import javafx.fxml.FXML;
@@ -61,8 +63,8 @@ public class TrackingPageController {
     private Button createTrackingInfoButton(TrackingInfo info) {
         VBox card = new VBox();
         card.getStyleClass().add("tracking-info-card");
-        card.setPrefWidth(320);
-        card.setPrefHeight(410);
+        card.setPrefWidth(350);
+        card.setPrefHeight(460);
         card.setSpacing(0);
 
         // Top row: Tracking number (left), Status (right)
@@ -75,6 +77,11 @@ public class TrackingPageController {
         HBox.setHgrow(topRow.getChildren().get(1), Priority.ALWAYS);
 
         // Date row
+        Label typeTitle = new Label("Order Type:");
+        typeTitle.getStyleClass().add("tracking-label-item-title");
+        Label type = new Label(determineLabel(info));
+        type.getStyleClass().add("tracking-label-section");
+
         Label orderDateTitle = new Label("Ordered on:");
         orderDateTitle.getStyleClass().add("tracking-label-item-title");
 
@@ -99,13 +106,13 @@ public class TrackingPageController {
         Label estimated = new Label(info.estimatedDate);
         estimated.getStyleClass().add("tracking-label-section");
 
-        card.getChildren().addAll(topRow, orderDateTitle, orderDate, itemsLabel, items, locationLabel, location, estLabel, estimated);
+        card.getChildren().addAll(topRow, typeTitle, type, orderDateTitle, orderDate, itemsLabel, items, locationLabel, location, estLabel, estimated);
 
         // Turn card into a real clickable button
         Button cardButton = new Button();
         cardButton.setGraphic(card);
         cardButton.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
-        cardButton.setPrefSize(320, 410);
+        cardButton.setPrefSize(350, 460);
         cardButton.setFocusTraversable(false);
 
         cardButton.setOnAction(evt -> {
@@ -116,6 +123,24 @@ public class TrackingPageController {
         return cardButton;
     }
 
+    private String determineLabel(TrackingInfo info){
+        DocumentReference docRef = HelloApplication.fstore.collection("shipments").document(info.trackingNumber);
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        try {
+            DocumentSnapshot document = future.get();
+            if (document.exists()) {
+                if(document.getData().get("SenderID").equals(MasterPageController.userLoggedIn.getUid())){
+                    return "Shipping";
+                }
+                else{
+                    return "Receiving";
+                }
+            }
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
     private void showTrackingDetail(TrackingInfo info) {
         try {
             // Find the current MasterPageController via UserData
