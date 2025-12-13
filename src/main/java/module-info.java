@@ -2,6 +2,7 @@ module org.example.trackit {
     requires javafx.controls;
     requires javafx.fxml;
 
+
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
@@ -15,6 +16,7 @@ module org.example.trackit {
     requires com.google.api.apicommon;
     requires javafx.base;
     requires javafx.graphics;
+    requires org.json;
 
     opens org.example.trackit to javafx.fxml;
     exports org.example.trackit;
