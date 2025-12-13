@@ -95,6 +95,13 @@ public class SingupPageController {
             alert.setContentText("Username is already taken");
             alert.showAndWait();
         }
+        else if(signupPasswordField.getText().length() < 6) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Warning");
+            alert.setHeaderText("Invalid password length");
+            alert.setContentText("Make sure you enter a password more than 6 characters");
+            alert.showAndWait();
+        }
         else{
             register();
             // Get reference to stage and master controller

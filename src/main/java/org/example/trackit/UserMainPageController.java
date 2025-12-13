@@ -26,8 +26,6 @@ public class UserMainPageController {
     @FXML
     public TextField trackingID;
 
-    @FXML
-    private Label invalidTrackingID;
     public static boolean clickedOngoing;
 
     @FXML
@@ -49,8 +47,6 @@ public class UserMainPageController {
         String fxmlFile = null;
 
         if (source == trackButtonDirect) {
-            // clear old message
-            invalidTrackingID.setText("");
 
             String input = trackingID.getText().trim();
 
@@ -58,12 +54,11 @@ public class UserMainPageController {
             if (!input.matches("\\d{9}")) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Warning");
-                alert.setHeaderText("Invalid name");
-                alert.setContentText("Username is already taken");
+                alert.setHeaderText("Invalid tracking number");
+                alert.setContentText("Make sure that tracking number is 9 digits");
                 alert.showAndWait();
                 return;
             }
-
             // Get reference to stage and master controller
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Parent masterRoot = stage.getScene().getRoot();
@@ -75,8 +70,8 @@ public class UserMainPageController {
             } else {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Warning");
-                alert.setHeaderText("Invalid name");
-                alert.setContentText("Username is already taken");
+                alert.setHeaderText("Invalid tracking number");
+                alert.setContentText("Make sure that inputted tracking number matches actual number");
                 alert.showAndWait();
             }
         }

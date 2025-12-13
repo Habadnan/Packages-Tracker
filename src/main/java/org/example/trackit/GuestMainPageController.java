@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -24,8 +25,6 @@ public class GuestMainPageController {
     private Button trackButtonDirect;
     @FXML
     private TextField trackingID;
-    @FXML
-    private Label invalidTrackingID;
 
     @FXML
     private void initialize() {
@@ -42,13 +41,17 @@ public class GuestMainPageController {
 
     public void handleTrackButton(ActionEvent event) throws IOException {
         // clear old message
-        invalidTrackingID.setText("");
+        //invalidTrackingID.setText("");
 
         String input = trackingID.getText().trim();
 
         // basic format check: exactly 9 digits
         if (!input.matches("\\d{9}")) {
-            invalidTrackingID.setText("INVALID TRACKING ID NUMBER");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Warning");
+            alert.setHeaderText("Invalid tracking number");
+            alert.setContentText("Make sure that tracking number is 9 digits");
+            alert.showAndWait();
             return;
         }
 
@@ -60,7 +63,11 @@ public class GuestMainPageController {
             MasterPageController masterController = (MasterPageController) masterRoot.getUserData();
             masterController.loadAndSetContent("detail-tracking-page.fxml", input);
         } else {
-            invalidTrackingID.setText("INVALID TRACKING ID NUMBER");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Warning");
+            alert.setHeaderText("Invalid tracking number");
+            alert.setContentText("Make sure that inputted tracking number matches actual number");
+            alert.showAndWait();
         }
     }
 
