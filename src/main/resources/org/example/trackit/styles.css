@@ -154,6 +154,7 @@
 }
 
 /* Timeline ProgressBar Styling (makes the bar pop with your brand) */
+
 .progress-bar:determinate .bar {
     -fx-background-color: linear-gradient(to right, #FF6A00 75%, #F7971E 95%);
     -fx-background-radius: 8 8 8 8;

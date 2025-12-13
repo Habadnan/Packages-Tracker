@@ -46,72 +46,57 @@
 
                     <!-- Package Details Card -->
                     <VBox spacing="14" styleClass="tracking-info-card">
-                        <Label text="Package Details"
-                               styleClass="detail-section-header"/>
+                        <Label text="Package Details" styleClass="detail-section-header"/>
 
                         <HBox spacing="8" alignment="CENTER_LEFT">
                             <Label text="Status:" styleClass="detail-sub-label"/>
-                            <Label fx:id="statusLabel"
-                                   styleClass="detail-status-pill-onway"/>
+                            <Label fx:id="statusLabel" styleClass="detail-status-pill-onway"/>
                         </HBox>
 
                         <HBox spacing="8">
-                            <Label text="Package Type:"
-                                   styleClass="detail-sub-label"/>
-                            <Label fx:id="packageTypeLabel"
-                                   styleClass="detail-status-pill-onway"/>
+                            <Label text="Package Type:" styleClass="detail-sub-label"/>
+                            <Label fx:id="packageTypeLabel" styleClass="detail-status-pill-onway"/>
                         </HBox>
 
                         <Label text="Items:" styleClass="detail-sub-label"/>
                         <VBox fx:id="itemsBox" spacing="2"/>
 
                         <Label text="Order Date:" styleClass="detail-sub-label"/>
-                        <Label fx:id="orderDateLabel"
-                               styleClass="detail-value-label"/>
+                        <Label fx:id="orderDateLabel" styleClass="detail-value-label"/>
 
-                        <Label text="Current Location:"
-                               styleClass="detail-sub-label"/>
-                        <Label fx:id="locationLabel"
-                               styleClass="detail-value-label"/>
+                        <Label text="Current Location:" styleClass="detail-sub-label"/>
+                        <Label fx:id="locationLabel" styleClass="detail-value-label"/>
 
-                        <Label text="Delivery Address:"
-                               styleClass="detail-sub-label"/>
-                        <Label fx:id="addressLabel"
-                               styleClass="detail-value-label"/>
+                        <Label text="Delivery Address:" styleClass="detail-sub-label"/>
+                        <Label fx:id="addressLabel" styleClass="detail-value-label"/>
                     </VBox>
 
                     <!-- Delivery Timeline Card -->
                     <VBox spacing="10" styleClass="tracking-info-card">
                         <HBox spacing="10" alignment="CENTER_LEFT">
-                            <Label text="Delivery Timeline"
-                                   styleClass="detail-section-header"/>
+                            <Label text="Delivery Timeline" styleClass="detail-section-header"/>
                             <Label text="⏱" style="-fx-font-size:15px;"/>
                         </HBox>
 
-                        <Label text="Estimated Delivery:"
-                               styleClass="detail-sub-label"/>
-                        <Label fx:id="estDateLabel"
-                               styleClass="detail-value-label"/>
+                        <Label text="Estimated Delivery:" styleClass="detail-sub-label"/>
+                        <Label fx:id="estDateLabel" styleClass="detail-value-label"/>
 
                         <HBox spacing="16" alignment="CENTER_LEFT">
-                            <Label text="Days Remaining:"
-                                   styleClass="detail-sub-label"/>
-                            <Label fx:id="daysRemainingLabel"
-                                   styleClass="detail-value-label"/>
+                            <Label text="Days Remaining:" styleClass="detail-sub-label"/>
+                            <Label fx:id="daysRemainingLabel" styleClass="detail-value-label"/>
                         </HBox>
 
                         <VBox spacing="2">
                             <ProgressBar fx:id="deliveryProgressBar"
                                          prefWidth="160"
-                                         prefHeight="8"
-                                         style="-fx-accent: #493CD6;"/>
-
+                                         styleClass="progress-bar"/>
                             <Label fx:id="progressLabel"
-                                   style="-fx-font-size:12px;
-                                          -fx-text-fill:#493CD6;"/>
+                                   style="-fx-font-size:12px; -fx-text-fill:#493CD6;"/>
                         </VBox>
                     </VBox>
                 </VBox>
+
+
 
                 <!-- RIGHT COLUMN -->
                 <VBox spacing="20"
