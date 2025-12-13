@@ -61,11 +61,15 @@ public class DetailTrackingPageController {
                     document.get("Status").toString()
             );
 
-            packageType =
-                    document.get("SenderID")
-                            .equals(MasterPageController.userLoggedIn.getUid())
-                            ? "Shipped by You"
-                            : "Received by You";
+            if(MasterPageController.userLoggedIn == null){
+                packageType = "Guest Tracking";
+            } else {
+                packageType =
+                        document.get("SenderID")
+                                .equals(MasterPageController.userLoggedIn.getUid())
+                                ? "Shipped by You"
+                                : "Received by You";
+            }
 
             populateDetails();
 
