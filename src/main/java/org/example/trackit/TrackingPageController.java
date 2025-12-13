@@ -97,7 +97,7 @@ public class TrackingPageController {
         Label locationLabel = new Label("Location:");
         locationLabel.getStyleClass().add("tracking-label-item-title");
 
-        Label location = new Label(info.location);
+        Label location = new Label(info.DestinationLocation);
         location.getStyleClass().add("tracking-label-section");
 
         Label estLabel = new Label("Est. Delivery Date:");
@@ -201,9 +201,9 @@ public class TrackingPageController {
 
 
     public static class TrackingInfo {
-        public final String trackingNumber, orderDate, items, location, estimatedDate, status;
+        public final String trackingNumber, orderDate, items, DestinationLocation, estimatedDate, status;
         public TrackingInfo(String t, String o, String i, String l, String e, String s) {
-            trackingNumber = t; orderDate = o; items = i; location = l; estimatedDate = e; status = s;
+            trackingNumber = t; orderDate = o; items = i; DestinationLocation = l; estimatedDate = e; status = s;
         }
     }
 }

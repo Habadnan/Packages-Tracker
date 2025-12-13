@@ -55,6 +55,12 @@ public class LoginPageController {
                 masterController.setUserLoggedIn(userRecord);
                 masterController.loadAndSetContent("user-main-page.fxml");
             }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Warning");
+            alert.setHeaderText("Invalid username or password");
+            alert.setContentText("Please try again");
+            alert.showAndWait();
         }
     }
 

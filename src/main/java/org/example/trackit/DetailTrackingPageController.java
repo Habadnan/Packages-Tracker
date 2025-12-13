@@ -37,6 +37,7 @@ public class DetailTrackingPageController {
     private String trackingID;
     private TrackingPageController.TrackingInfo trackingInfo;
     private String packageType;
+    private String currentLocation;
 
     public void setTrackingID(String trackingID) {
         this.trackingID = trackingID;
@@ -60,6 +61,7 @@ public class DetailTrackingPageController {
                     estimated.toString(),
                     document.get("Status").toString()
             );
+            currentLocation = document.get("SenderAddress").toString();
 
             if(MasterPageController.userLoggedIn == null){
                 packageType = "Guest Tracking";
@@ -89,8 +91,8 @@ public class DetailTrackingPageController {
         trackingNumLabel.setText("Tracking ID: " + trackingInfo.trackingNumber);
         statusLabel.setText(trackingInfo.status);
         packageTypeLabel.setText(packageType);
-        locationLabel.setText(trackingInfo.location);
-        addressLabel.setText(trackingInfo.location);
+        locationLabel.setText(currentLocation);
+        addressLabel.setText(trackingInfo.DestinationLocation);
         orderDateLabel.setText(trackingInfo.orderDate);
         estDateLabel.setText(trackingInfo.estimatedDate);
 
